@@ -12,5 +12,12 @@ format:
     fontsize: 11pt
     top-level-division: section
 
+  docx:
+    reference-doc: templates/docx/nih.docx
+    number-sections: false
+    toc: false
+    link-citations: true
+    default-image-extension: png
+
 bibliography: src/bib/references.bib
 csl: src/bib/csl/nature.csl

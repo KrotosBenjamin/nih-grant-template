@@ -4,13 +4,14 @@
 # Ensure _quarto-sections.yml exists at repo root.
 # -------------------------------------------------------------------
 
-.PHONY: all sections sections-pdf sections-docx aims research one r01 r21 r03 clean
+.PHONY: sections sections-pdf sections-docx aims research one clean
 
 # tools & dirs
-QUARTO            ?= quarto
-OUT               ?= _output
-PROFILE_SECTIONS  ?= sections       # matches _quarto-sections.yml
-FORMAT            ?= pdf            # used by `make one`
+QUARTO           ?= quarto
+OUT              ?= _out
+SECT_OUT         ?= $(OUT)/sections
+PROFILE_SECTIONS ?= sections       # matches _quarto-sections.yml
+FORMAT           ?= pdf            # used by `make one`
 
 # section file list (edit to match your repo)
 SECTIONS := \
@@ -33,15 +34,15 @@ STRATEGY_LIMIT ?= 12
 # -------------------------------------------------------------------
 # Pattern rules: QMD -> PDF/DOCX (per-file, non-book)
 # -------------------------------------------------------------------
-$(OUT)/%.pdf: src/sections/%.qmd
-	@mkdir -p $(OUT)
+$(SECT_OUT)/%.pdf: src/sections/%.qmd
+	@mkdir -p $(SECT_OUT)
 	$(QUARTO) render --profile $(PROFILE_SECTIONS) "$<" --to pdf \
-	  --output-dir $(OUT) -o "$(notdir $@)"
+	--output-dir $(SECT_OUT) -o "$(notdir $@)"
 
-$(OUT)/%.docx: src/sections/%.qmd
-	@mkdir -p $(OUT)
+$(SECT_OUT)/%.docx: src/sections/%.qmd
+	@mkdir -p $(SECT_OUT)
 	$(QUARTO) render --profile $(PROFILE_SECTIONS) "$<" --to docx \
-	  --output-dir $(OUT) -o "$(notdir $@)"
+	--output-dir $(SECT_OUT) -o "$(notdir $@)"
 
 # -------------------------------------------------------------------
 # 1) ALL FILES (one by one)
@@ -53,13 +54,17 @@ sections-docx: $(DOCXS)
 # -------------------------------------------------------------------
 # 2) SPECIFIC AIMS
 # -------------------------------------------------------------------
-aims: $(OUT)/$(notdir $(AIMS_FILE:.qmd=.pdf)) $(OUT)/$(notdir $(AIMS_FILE:.qmd=.docx))
+AIMS_FILE := src/sections/03-specific-aims.qmd
+AIMS_LIMIT ?= 1
+aims: $(SECT_OUT)/$(notdir $(AIMS_FILE:.qmd=.pdf)) $(SECT_OUT)/$(notdir $(AIMS_FILE:.qmd=.docx))
 	python3 scripts/check_pages.py "$(OUT)/$(notdir $(AIMS_FILE:.qmd=.pdf))" $(AIMS_LIMIT) || true
 
 # -------------------------------------------------------------------
 # 3) RESEARCH STRATEGY
 # -------------------------------------------------------------------
-research: $(OUT)/$(notdir $(RESEARCH_FILE:.qmd=.pdf)) $(OUT)/$(notdir $(RESEARCH_FILE:.qmd=.docx))
+RESEARCH_FILE := src/sections/04-research-strategy.qmd
+STRATEGY_LIMIT ?= 12
+research: $(SECT_OUT)/$(notdir $(RESEARCH_FILE:.qmd=.pdf)) $(SECT_OUT)/$(notdir $(RESEARCH_FILE:.qmd=.docx))
 	python3 scripts/check_pages.py "$(OUT)/$(notdir $(RESEARCH_FILE:.qmd=.pdf))" $(STRATEGY_LIMIT) || true
 
 # -------------------------------------------------------------------
