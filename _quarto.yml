@@ -1,27 +1,35 @@
 project:
-  type: manuscript
-  output-dir: _output
+  type: book
+  output-dir: _out
+  title: "NIH Research Grant (Template)"
+  author: "Kynon J. M. Benjamin"
+  profile: default
 
-manuscript:
-  article: mechanisms/r01.qmd   # or r21.qmd / r03.qmd
-  
+book:
+  chapters:
+    - src/sections/00-front-matter.qmd
+    - src/sections/01-project-summary.qmd
+    - src/sections/02-project-narrative.qmd
+    - src/sections/03-specific-aims.qmd
+    - src/sections/04-research-strategy.qmd
+    - src/sections/90-references.qmd
+  page-navigation: false
+
 format:
   pdf:
-    template: templates/nih.tex
-    pdf-engine: xelatex
-    include-in-header: |
-      % any extra LaTeX you want globally
-    toc: false
+    documentclass: article
+    include-in-header: templates/tex/preamble.tex
+    geometry: "margin=0.5in"  # Adjust if needed
     number-sections: false
-  docx:
-    reference-doc: styles/nih.docx    # optional; falls back to default styles if missing
+    toc: false
+    fontsize: 11pt            # verify FOA (Arial/Helvetica-equivalent in preamble)
+  docx: default               # handy for collaborators
 
-execute:
-  echo: false
-  warning: false
-  message: false
+bibliography: src/bib/references.bib
+csl: src/bib/csl/ama.csl
 
-metadata-files:
-  - params/r01.yml   # overridden per mechanism when rendering that target
-
-filters: []          # add pandoc lua filters here if you want auto-linting
+params:
+  mechanism: "R01"
+  draft: true            # shows DRAFT watermark in preamble
+  show-page-warning: true
+  include-appendix: false
