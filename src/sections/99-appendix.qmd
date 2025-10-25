@@ -1,13 +1,5 @@
-<!-- Reusable snippets for inclusion across sections -->
+---
+title: "Appendix (Do Not Include in Submission Unless Allowed)"
+---
 
-### Rigor and Reproducibility
-- Experimental design, inclusion/exclusion criteria, randomization, blinding, power, replication.
-
-
-### Authentication of Key Biological and/or Chemical Resources
-- Source, validation, contamination checks, STR profiling or equivalents.
-
-
-### Data/Code Availability
-- Repositories, accession timelines, licenses, PPR/MPD timelines.
-
+Supplemental figures and pilot analyses.

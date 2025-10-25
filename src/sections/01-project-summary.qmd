@@ -1,8 +1,6 @@
 ---
 title: "Project Summary / Abstract"
-format:
-  pdf: default
-  docx: default
+format: pdf
 ---
 
 **Overall Impact.** _Provide a succinct, accurate description of the proposed work, including broad, long-term objectives and specific aims._

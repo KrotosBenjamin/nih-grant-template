@@ -1,0 +1,16 @@
+name: render
+on:
+  push: { branches: [main] }
+  pull_request: {}
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: quarto-dev/quarto-actions/setup@v2
+      - name: Render R01
+        run: QUARTO_PROFILE=r01 quarto render
+      - uses: actions/upload-artifact@v4
+        with:
+          name: PDFs
+          path: _out/*.pdf

@@ -1,3 +1,4 @@
 # Treat docx and pdf as binary
 *.docx binary
 *.pdf binary
+* text=auto eol=lf

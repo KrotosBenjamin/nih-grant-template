@@ -1,0 +1,18 @@
+---
+title: "{{< param mechanism >}} Application"
+subtitle: "Project Title"
+author: "PI Name, Degree(s)"
+date: "`r format(Sys.Date(), '%B %d, %Y')`"
+format: pdf
+---
+
+NOFO:
+
+IC:
+
+NIH Deadline:
+
+Institutional Deadline:
+
+Study Section:
+<!-- Keep the front matter plain and brief; NIH submissions usually don't use a decorative title page. -->

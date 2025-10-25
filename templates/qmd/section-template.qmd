@@ -1,0 +1,13 @@
+---
+title: "SECTION TITLE"
+---
+
+Intro sentence.
+
+## Subheading
+Content.
+
+- Bullet 1
+- Bullet 2
+
+**Takeaway.** One sentence.

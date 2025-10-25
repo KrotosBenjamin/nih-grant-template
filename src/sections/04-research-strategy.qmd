@@ -1,11 +1,23 @@
-## Significance
+---
+title: "Research Strategy"
+---
 
+## Significance
 - What is the problem? Why now? Who benefits?
 
-- How does this project **change the field** (mechanisms, models, technologies)?
+## Innovation
+- What is novel about your approach, dataset, or theory?
 
-- Critical barriers and how your approach overcomes them.
+## Approach
+### Preliminary Studies / Progress
+- Key results in 2–4 bullets, cite with @doe2020 if in `references.bib`.
 
-- Prior work and **gaps** it leaves.
+### Aim 1
+- Overview → Experimental design → Analysis → Potential problems & alternatives.
 
-- For multiple aims, show how Significance flows into Innovation and Approach.
+### Aim 2
+- Same structure.
+
+### Aim 3
+
+### Timeline

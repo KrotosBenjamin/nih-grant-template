@@ -1,26 +1,18 @@
 ---
 title: "Specific Aims"
-format:
-  pdf: default
-  docx: default
-toc: false
-number-sections: false
+format: pdf
 ---
 
-**Overall goal.** One or two sentences on the unmet need and big idea.
+**Overall Objective.** One short paragraph framing the problem and long-term goal.
 
-**Central hypothesis.** Crisp statement + why now (prelim data or enabling tech).
+**Central Hypothesis.** One sentence.
 
-**Aim 1 — Title (what you will deliver).**
-- Brief objective and approach (1–2 lines).
-- Expected outcome and how it reduces a key risk.
+**Rationale.** One short paragraph.
 
-**Aim 2 — Title.**
-- Objective/approach (1–2 lines).
-- Expected outcome; how it advances the field.
+**Aim 1.** Clear, testable aim. *Approach in a phrase.*
+**Aim 2.** Clear, testable aim. *Approach in a phrase.*
+**Exploratory Aim (if any).** Optional.
 
-**Aim 3 — Title** (omit for R21/R03 if only two aims).
-- Objective/approach (1–2 lines).
-- Expected outcome; decision point or validation.
+**Expected Outcomes and Impact.** One short paragraph.
 
-**Impact.** One sentence on how success changes the field or practice.
+*Figure references like @fig:concept appear inline once figures are added.*

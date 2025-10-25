@@ -1,5 +1,5 @@
 # Quarto output and caches
-_output/
+_out/
 .quarto/
 *.log
 *.aux
