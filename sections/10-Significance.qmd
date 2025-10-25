@@ -1,0 +1,11 @@
+## Significance
+
+- What is the problem? Why now? Who benefits?
+
+- How does this project **change the field** (mechanisms, models, technologies)?
+
+- Critical barriers and how your approach overcomes them.
+
+- Prior work and **gaps** it leaves.
+
+- For multiple aims, show how Significance flows into Innovation and Approach.

@@ -1,0 +1,35 @@
+## Approach
+
+**Overall Strategy.** One crisp paragraph introducing the overall plan, how aims interlock, major risks and alternatives.
+
+### Aim 1. Title (n = X; power rationale)
+- **Rationale/Innovation:** ...
+
+- **Design/Methods:** ...
+
+- **Milestones & Go/No-Go:** ...
+
+- **Potential Problems & Alternatives:** ...
+
+
+
+### Aim 2. Title
+
+- ...
+
+
+
+### Aim 3. Title
+
+- ...
+
+
+
+**Rigor & Reproducibility.** Pre-specify QC, analysis plans, blinding, power targets.
+
+
+
+**Human Subjects / Vertebrate Animals / Authentication**
+
+(Include via `_includes.qmd` snippets; keep this driver focused on Research Strategy content only.)
+

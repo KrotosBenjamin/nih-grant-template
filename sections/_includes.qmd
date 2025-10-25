@@ -1,0 +1,13 @@
+<!-- Reusable snippets for inclusion across sections -->
+
+### Rigor and Reproducibility
+- Experimental design, inclusion/exclusion criteria, randomization, blinding, power, replication.
+
+
+### Authentication of Key Biological and/or Chemical Resources
+- Source, validation, contamination checks, STR profiling or equivalents.
+
+
+### Data/Code Availability
+- Repositories, accession timelines, licenses, PPR/MPD timelines.
+

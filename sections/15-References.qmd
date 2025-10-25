@@ -1,0 +1,4 @@
+## References
+
+Use standard citation keys if you add a `references.bib` and CSL style.
+
