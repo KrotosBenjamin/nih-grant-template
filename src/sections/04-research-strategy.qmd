@@ -1,7 +1,9 @@
 ---
-title: "Research Strategy"
+format:
+  pdf:
+    output-file: 04-research-strategy.pdf
 ---
-
+# Research Strategy
 ## Significance
 - What is the problem? Why now? Who benefits?
 
@@ -20,4 +22,4 @@ title: "Research Strategy"
 
 ### Aim 3
 
-### Timeline
+## Timeline

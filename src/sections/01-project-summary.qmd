@@ -1,7 +1,9 @@
 ---
-title: "Project Summary / Abstract"
-format: pdf
+format:
+  pdf:
+    output-file: 01-project-summary.pdf
 ---
+# Project Summary / Abstract
 
 **Overall Impact.** _Provide a succinct, accurate description of the proposed work, including broad, long-term objectives and specific aims._
 

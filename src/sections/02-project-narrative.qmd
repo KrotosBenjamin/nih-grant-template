@@ -1,6 +1,7 @@
 ---
-title: "Project Narrative"
-format: pdf
+format:
+  pdf:
+    output-file: 02-project-narrative.pdf
 ---
-
+# Project Narrative
 _In 2–3 sentences, describe the relevance to public health in plain language._

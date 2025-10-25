@@ -1,9 +1,9 @@
 ---
-title: "Specific Aims"
 format:
   pdf:
     output-file: 03-specific-aims.pdf
 ---
+# Specific Aims
 
 **Overall Objective.** One short paragraph framing the problem and long-term goal.
 

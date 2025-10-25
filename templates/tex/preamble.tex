@@ -9,28 +9,17 @@
 % margins set via _quarto.yml geometry
 \usepackage[hidelinks]{hyperref}
 \usepackage{microtype}
-\usepackage{fancyhdr}
-\pagestyle{fancy}
-\fancyhf{}
-\fancyfoot[C]{\thepage}
-% optional header with PI + mechanism
-\fancyhead[L]{\textit{PI Name}}
-\fancyhead[R]{\textit{Project Title}}
 
-% % line spacing and paragraphing
-% \usepackage{setspace}
-% $if(linestretch)$\setstretch{$linestretch$}$else$\setstretch{1.05}$endif$
-% \setlength{\parskip}{0.3\baselineskip}
-% \setlength{\parindent}{0pt}
+% --- Make YAML title exactly 11pt ---
+% [B] Section heading block:
+\usepackage{titlesec}
+\titleformat{\section}{\bfseries\normalsize\filcenter}{}{0pt}{\MakeUppercase}
+\titlespacing*{\section}{0pt}{0pt}{0.2ex}
+\titlespacing*{\subsection}{0pt}{0.5ex}{0.2ex}
+\titleformat{\subsection}{\itshape\normalsize}{}{0pt}{}
 
-% % url formatting
-
-% % headings: small and tight
-% \usepackage{titlesec}
-% \titlespacing*{\section}{0pt}{0.5ex}{0.2ex}
-% \titlespacing*{\subsection}{0pt}{0.5ex}{0.2ex}
-% \titleformat{\section}{\bfseries\normalsize}{}{0pt}{}
-% \titleformat{\subsection}{\itshape\normalsize}{}{0pt}{}
+% Kill page numbers
+\AtBeginDocument{\pagenumbering{gobble}\pagestyle{empty}}
 
 % \begin{document}
 % $body$
