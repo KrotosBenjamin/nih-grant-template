@@ -1,0 +1,11 @@
+fontsize: 11pt
+linestretch: 1.05
+
+params:
+  mechanism: R03
+  page_limits:
+    Abstract: 1
+    Narrative: 1
+    ResearchStrategy: 6
+  show_preliminary: false
+  show_overall: false
