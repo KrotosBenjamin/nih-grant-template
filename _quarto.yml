@@ -2,14 +2,19 @@ project:
   type: default
   output-dir: _out/sections
 
+filters:
+  - filters/indent.lua
+
 format:
   pdf:
     documentclass: article
     include-in-header: templates/tex/preamble.tex
-    geometry: "margin=0.5in"  # Adjust if needed
+    pdf-engine: lualatex
+    mainfont: "Arial"
+    fontsize: 11pt
+    geometry: "margin=0.5in"
     number-sections: false
     toc: false
-    fontsize: 11pt
     top-level-division: section
 
   docx:

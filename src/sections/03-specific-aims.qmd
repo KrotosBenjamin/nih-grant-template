@@ -11,9 +11,13 @@ format:
 
 **Rationale.** One short paragraph.
 
-> **Aim 1.** Clear, testable aim. *Approach in a phrase.*
-> **Aim 2.** Clear, testable aim. *Approach in a phrase.*
-> **Exploratory Aim (if any).** Optional.
+::: {.indent width=2em}
+**Aim 1.** Clear, testable aim. *Approach in a phrase.*
+
+**Aim 2.** Clear, testable aim. *Approach in a phrase.*
+
+**Exploratory Aim (if any).** Optional.
+:::
 
 **Expected Outcomes and Impact.** One short paragraph.
 
