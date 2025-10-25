@@ -1,0 +1,22 @@
+# Quarto output and caches
+_output/
+.quarto/
+*.log
+*.aux
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.nav
+*.snm
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Python env/cache
+__pycache__/
+.venv/
