@@ -26,11 +26,6 @@ format:
 ```{include} ../sections/13-TimelineMilestones.qmd
 ```
 
-$if(params.show_preliminary)$
-
-```{include} ../sections/14-PreliminaryData.qmd
-```
-
 ```{include} ../sections/15-References.qmd
 ```
 
