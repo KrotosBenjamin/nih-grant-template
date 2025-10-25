@@ -12,6 +12,8 @@ OUT              ?= _out
 SECT_OUT         ?= $(OUT)/sections
 PROFILE_SECTIONS ?= sections       # matches _quarto-sections.yml
 FORMAT           ?= pdf            # used by `make one`
+MECH ?= r01                        # r01 | r03 | r21
+STRATEGY_LIMIT := $(if $(filter $(MECH),r01),12,6)
 
 # section file list (edit to match your repo)
 SECTIONS := \
@@ -24,12 +26,6 @@ SECTIONS := \
 # derived targets
 PDFS  := $(patsubst src/sections/%.qmd,$(OUT)/%.pdf,$(SECTIONS))
 DOCXS := $(patsubst src/sections/%.qmd,$(OUT)/%.docx,$(SECTIONS))
-
-# page-limit checks (override on CLI if you want)
-AIMS_FILE      := src/sections/03-SpecificAims.qmd
-RESEARCH_FILE  := src/sections/04-research-strategy.qmd
-AIMS_LIMIT     ?= 1
-STRATEGY_LIMIT ?= 12
 
 # -------------------------------------------------------------------
 # Pattern rules: QMD -> PDF/DOCX (per-file, non-book)
@@ -63,7 +59,6 @@ aims: $(SECT_OUT)/$(notdir $(AIMS_FILE:.qmd=.pdf)) $(SECT_OUT)/$(notdir $(AIMS_F
 # 3) RESEARCH STRATEGY
 # -------------------------------------------------------------------
 RESEARCH_FILE := src/sections/04-research-strategy.qmd
-STRATEGY_LIMIT ?= 12
 research: $(SECT_OUT)/$(notdir $(RESEARCH_FILE:.qmd=.pdf)) $(SECT_OUT)/$(notdir $(RESEARCH_FILE:.qmd=.docx))
 	python3 scripts/check_pages.py "$(OUT)/$(notdir $(RESEARCH_FILE:.qmd=.pdf))" $(STRATEGY_LIMIT) || true
 
