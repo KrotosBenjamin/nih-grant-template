@@ -6,6 +6,11 @@ R03_LIMIT=6
 
 all: r01 r21 r03
 
+aims:
+	quarto render sections/03-SpecificAims.qmd --to pdf
+	python3 scripts/check_pages.py _output/03-SpecificAims.pdf 1 || true
+	quarto render sections/03-SpecificAims.qmd --to docx
+
 r01:
 	quarto render mechanisms/r01.qmd --to pdf
 	python3 scripts/check_pages.py _output/r01.pdf $(R01_LIMIT) || true
