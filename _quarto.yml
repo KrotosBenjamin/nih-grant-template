@@ -1,0 +1,301 @@
+Below is a lightweight, source-controlled template that cleanly separates **content (Markdown)** from **formatting (PDF/DOCX via Pandoc/Quarto + LaTeX/CSS)**. It supports R03/R21/R01 with shared sections and mechanism‑specific wrappers.
+
+---
+
+## Repository layout
+
+```
+nih-grant-template/
+├─ README.md
+├─ _quarto.yml
+├─ Makefile
+├─ styles/
+│  ├─ nih.docx                 # (optional) reference DOCX with pre-set styles
+│  └─ csl-nature.csl          # (optional) citation style if you include refs
+├─ templates/
+│  └─ nih.tex                  # Pandoc LaTeX template enforcing margins, font
+├─ params/
+│  ├─ r01.yml                  # page limits, toggles, metadata
+│  ├─ r21.yml
+│  └─ r03.yml
+├─ sections/                   # shared content, one file per section
+│  ├─ 00-Title.qmd
+│  ├─ 01-ProjectSummary.qmd    # Abstract
+│  ├─ 02-ProjectNarrative.qmd
+│  ├─ 03-Overall.qmd           # (optional for multi-project / center apps)
+│  ├─ 10-Significance.qmd
+│  ├─ 11-Innovation.qmd
+│  ├─ 12-Approach.qmd
+│  ├─ 13-TimelineMilestones.qmd
+│  ├─ 14-PreliminaryData.qmd
+│  ├─ 15-References.qmd
+│  └─ _includes.qmd            # boilerplate snippets (rigor, authentication, etc.)
+├─ mechanisms/
+│  ├─ r01.qmd
+│  ├─ r21.qmd
+│  └─ r03.qmd
+└─ scripts/
+   └─ check_pages.py           # simple gate to warn if PDF exceeds page limits
+```
+
+---
+
+## `_quarto.yml`
+
+```yaml
+project:
+  type: manuscript
+  output-dir: _output
+
+format:
+  pdf:
+    template: templates/nih.tex
+    pdf-engine: xelatex
+    include-in-header: |
+      % any extra LaTeX you want globally
+    toc: false
+    number-sections: false
+  docx:
+    reference-doc: styles/nih.docx    # optional; falls back to default styles if missing
+
+execute:
+  echo: false
+  warning: false
+  message: false
+
+metadata-files:
+  - params/r01.yml   # overridden per mechanism when rendering that target
+
+filters: []          # add pandoc lua filters here if you want auto-linting
+```
+
+---
+
+## `templates/nih.tex` (minimal Pandoc LaTeX template)
+
+> Uses 1 inch margins by default (safe for NIH). Switch to 0.5" if your institution explicitly allows it. Sets 11pt Arial via `xelatex` (falls back to Helvetica if Arial is unavailable). Keep it minimal and override with YAML when needed.
+
+```tex
+% pandoc/LaTeX template for NIH grant pdfs (minimal)
+\PassOptionsToPackage{hyphens}{url}
+$if(fontsize)$\documentclass[$fontsize$]{article}$else$\documentclass[11pt]{article}$endif$
+
+% page geometry (safe default: 1in)
+\usepackage[margin=1in]{geometry}
+
+% fonts via xelatex
+\usepackage{fontspec}
+\defaultfontfeatures{Ligatures=TeX}
+\setmainfont{Arial}
+\setsansfont{Arial}
+
+% line spacing and paragraphing
+\usepackage{setspace}
+$if(linestretch)$\setstretch{$linestretch$}$else$\setstretch{1.05}$endif$
+\setlength{\parskip}{0.3\baselineskip}
+\setlength{\parindent}{0pt}
+
+% url formatting
+\usepackage[hidelinks]{hyperref}
+\usepackage{microtype}
+
+% headings: small and tight
+\usepackage{titlesec}
+\titlespacing*{\section}{0pt}{0.5ex}{0.2ex}
+\titlespacing*{\subsection}{0pt}{0.5ex}{0.2ex}
+\titleformat{\section}{\bfseries\normalsize}{}{0pt}{}
+\titleformat{\subsection}{\itshape\normalsize}{}{0pt}{}
+
+\begin{document}
+$body$
+\end{document}
+```
+
+---
+
+## `params/r01.yml` (similar for r21.yml, r03.yml)
+
+```yaml
+# Mechanism-specific metadata and limits
+fontsize: 11pt
+linestretch: 1.05
+
+# Simple switches you can use inside content with conditional blocks
+params:
+  mechanism: R01
+  page_limits:
+    Abstract: 1
+    Narrative: 1
+    ResearchStrategy: 12
+  show_preliminary: true
+  show_overall: false
+```
+
+---
+
+## `mechanisms/r01.qmd` (driver file)
+
+````yaml
+---
+title: "Research Strategy — $params.mechanism$"
+author: "PI Name, PhD"
+date: today
+format:
+  pdf: default
+  docx: default
+---
+
+
+```{=latex}
+% You can place a mechanism-specific cover or leave blank (ASSIST usually assembles PDFs per attachment type)
+````
+
+::: {#research-strategy}
+
+```{include} ../sections/10-Significance.qmd
+```
+
+```{include} ../sections/11-Innovation.qmd
+```
+
+```{include} ../sections/12-Approach.qmd
+```
+
+```{include} ../sections/13-TimelineMilestones.qmd
+```
+
+$if(params.show_preliminary)$
+
+```{include} ../sections/14-PreliminaryData.qmd
+```
+
+$endif$
+
+```{include} ../sections/15-References.qmd
+```
+
+:::
+
+````
+
+> Repeat with slimmer limits for `r21.qmd` and `r03.qmd`, or drive them all from a single `main.qmd` and swap `metadata-files`.
+
+---
+
+## Example section (`sections/12-Approach.qmd`)
+
+```markdown
+## Approach
+
+**Overall strategy.** One crisp paragraph that introduces the overall plan, how Aims interlock, major risks and alternatives.
+
+### Aim 1. Title (n = X; power rationale)
+- **Rationale/Innovation:** …
+- **Design/Methods:** …
+- **Milestones & Go/No-Go:** …
+- **Potential Problems & Alternatives:** …
+
+### Aim 2. Title
+…
+
+### Aim 3. Title
+…
+
+**Rigor & Reproducibility.** Pre-specify QC, preregistered analysis plans, blinded annotations, power targets.
+
+**Vertebrate Animals / Human Subjects / Authentication** (include via `sections/_includes.qmd` snippets).
+````
+
+---
+
+## `scripts/check_pages.py`
+
+```python
+#!/usr/bin/env python3
+import sys
+from pathlib import Path
+
+try:
+    from pypdf import PdfReader
+except Exception:
+    print("Install pypdf: pip install pypdf", file=sys.stderr)
+    sys.exit(2)
+
+PDF = Path(sys.argv[1])
+LIMIT = int(sys.argv[2])
+
+n_pages = len(PdfReader(str(PDF)).pages)
+if n_pages > LIMIT:
+    print(f"WARNING: {PDF.name} has {n_pages} pages > limit {LIMIT}")
+    sys.exit(1)
+else:
+    print(f"OK: {PDF.name} has {n_pages} pages (limit {LIMIT})")
+```
+
+---
+
+## `Makefile`
+
+```make
+# Simple convenience commands
+
+R01_LIMIT=12
+R21_LIMIT=6
+R03_LIMIT=6
+
+.PHONY: all r01 r21 r03 clean
+
+all: r01 r21 r03
+
+r01:
+	quarto render mechanisms/r01.qmd --to pdf
+	python3 scripts/check_pages.py _output/r01.pdf $(R01_LIMIT) || true
+	quarto render mechanisms/r01.qmd --to docx
+
+r21:
+	quarto render mechanisms/r21.qmd --to pdf
+	python3 scripts/check_pages.py _output/r21.pdf $(R21_LIMIT) || true
+	quarto render mechanisms/r21.qmd --to docx
+
+r03:
+	quarto render mechanisms/r03.qmd --to pdf
+	python3 scripts/check_pages.py _output/r03.pdf $(R03_LIMIT) || true
+	quarto render mechanisms/r03.qmd --to docx
+
+clean:
+	rm -rf _output
+```
+
+---
+
+## `README.md` (usage)
+
+```markdown
+# NIH Grant Template (Quarto-based)
+
+This template keeps **content in Markdown (QMD)** and **formatting in templates**. Render to **PDF** (for ASSIST uploads) and **DOCX** (for coauthor edits) from the same source.
+
+## Quick start
+1. Install [Quarto](https://quarto.org) and `xelatex` (TeX Live or TinyTeX). Optionally install Arial; Helvetica will be used if Arial is absent.
+2. Edit `params/*.yml` and `sections/*.qmd`.
+3. Build: `make r01` (or `r21`, `r03`). PDFs land in `_output/`.
+
+## Best practices
+- **One section per file**; keep each mechanism’s driver file tiny.
+- Use small reusable snippets in `sections/_includes.qmd` (e.g., Rigor, Resource Sharing).
+- Track with Git; use branches + PRs for trainee edits.
+- Add a `styles/nih.docx` reference document if your admin office insists on Word styling.
+- Consider pandoc filters for checks (e.g., banned phrases, placeholder text, missing figure calls).
+
+## Compliance notes
+- Always confirm the latest **NIH SF424 (R&R) guidance** (fonts, margins, page limits) for your FOA.
+- Use safe defaults here; adjust `templates/nih.tex`/`_quarto.yml` if your institute allows different settings.
+```
+
+---
+
+### Notes
+
+* If you prefer a stricter LaTeX flow, you can keep this identical content and swap the PDF template for a custom `.cls`. The Quarto/Pandoc layer still cleanly separates content from formatting.
+* For citations, drop a `references.bib` + `csl` file; Pandoc handles the rest.
+* Add GitHub Actions to render PDFs on push so you always have a fresh `_output/` artifact for review.
