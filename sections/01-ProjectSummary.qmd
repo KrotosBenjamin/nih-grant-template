@@ -1,0 +1,15 @@
+---
+title: "Project Summary / Abstract"
+format:
+  pdf: default
+  docx: default
+---
+
+**Overall Impact.** _Provide a succinct, accurate description of the proposed work, including broad, long-term objectives and specific aims._
+
+**Key Elements.**
+- Significance and innovation.
+- Approach at a high level (no details that exceed the 30 lines limit).
+- Impact on the field and relevance to public health.
+
+_(NIH limit: 30 lines of text.)_
