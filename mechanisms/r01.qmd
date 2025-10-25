@@ -1,0 +1,8 @@
+---
+title: "Research Strategy — $params.mechanism$"
+author: "PI Name, PhD"
+date: today
+format:
+  pdf: default
+  docx: default
+---

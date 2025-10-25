@@ -1,0 +1,13 @@
+# Mechanism-specific metadata and limits
+fontsize: 11pt
+linestretch: 1.05
+
+# Simple switches you can use inside content with conditional blocks
+params:
+  mechanism: R01
+  page_limits:
+    Abstract: 1
+    Narrative: 1
+    ResearchStrategy: 12
+  show_preliminary: true
+  show_overall: false
