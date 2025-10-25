@@ -5,11 +5,9 @@
 \setstretch{1.0} % single-spaced body
 \usepackage{geometry}
 
-% page geometry (safe default: 0.5in)
-\usepackage[margin=0.5in]{geometry}
-
 % Helvetica ≈ Arial; satisfies many FOA requirements—verify for your FOA.
 % margins set via _quarto.yml geometry
+\usepackage[hidelinks]{hyperref}
 \usepackage{microtype}
 \usepackage{fancyhdr}
 \pagestyle{fancy}
@@ -17,15 +15,7 @@
 \fancyfoot[C]{\thepage}
 % optional header with PI + mechanism
 \fancyhead[L]{\textit{PI Name}}
-\fancyhead[R]{\textit{\MakeUppercase{\thetitle}}}
-
-% Optional DRAFT watermark controlled by param
-$if(params.draft)$
-\usepackage[nostamp]{draftwatermark}
-\SetWatermarkText{DRAFT}
-\SetWatermarkScale{0.9}
-\SetWatermarkLightness{0.90}
-$endif$
+\fancyhead[R]{\textit{Project Title}}
 
 % % line spacing and paragraphing
 % \usepackage{setspace}
@@ -34,8 +24,6 @@ $endif$
 % \setlength{\parindent}{0pt}
 
 % % url formatting
-% \usepackage[hidelinks]{hyperref}
-% \usepackage{microtype}
 
 % % headings: small and tight
 % \usepackage{titlesec}

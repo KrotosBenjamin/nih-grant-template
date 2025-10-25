@@ -20,3 +20,6 @@ Thumbs.db
 # Python env/cache
 __pycache__/
 .venv/
+
+/.quarto/
+**/*.quarto_ipynb

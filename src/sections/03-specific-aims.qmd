@@ -1,6 +1,8 @@
 ---
 title: "Specific Aims"
-format: pdf
+format:
+  pdf:
+    output-file: 03-specific-aims.pdf
 ---
 
 **Overall Objective.** One short paragraph framing the problem and long-term goal.
@@ -15,4 +17,3 @@ format: pdf
 
 **Expected Outcomes and Impact.** One short paragraph.
 
-*Figure references like @fig:concept appear inline once figures are added.*

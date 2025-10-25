@@ -1,18 +1,6 @@
 project:
-  type: book
-  output-dir: _out
-
-book:
-  title: "NIH Research Grant (Template)"
-  author: "Kynon J. M. Benjamin"
-  chapters:
-    - src/sections/index.qmd
-    - src/sections/01-project-summary.qmd
-    - src/sections/02-project-narrative.qmd
-    - src/sections/03-specific-aims.qmd
-    - src/sections/04-research-strategy.qmd
-    - src/sections/90-references.qmd
-  page-navigation: false
+  type: default
+  output-dir: _out/sections
 
 format:
   pdf:
@@ -21,14 +9,8 @@ format:
     geometry: "margin=0.5in"  # Adjust if needed
     number-sections: false
     toc: false
-    fontsize: 11pt            # verify FOA (Arial/Helvetica-equivalent in preamble)
-  docx: default               # handy for collaborators
+    fontsize: 11pt
+    top-level-division: section
 
 bibliography: src/bib/references.bib
 csl: src/bib/csl/nature.csl
-
-params:
-  mechanism: "R01"
-  draft: true            # shows DRAFT watermark in preamble
-  show-page-warning: true
-  include-appendix: false

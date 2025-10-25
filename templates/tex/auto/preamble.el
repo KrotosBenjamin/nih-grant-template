@@ -4,7 +4,7 @@
  "preamble"
  (lambda ()
    (TeX-add-to-alist 'LaTeX-provided-package-options
-                     '(("helvet" "scaled") ("setspace" "") ("geometry" "" "margin=0.5in") ("microtype" "") ("fancyhdr" "") ("draftwatermark" "nostamp")))
+                     '(("helvet" "scaled") ("setspace" "") ("geometry" "") ("hyperref" "hidelinks") ("microtype" "") ("fancyhdr" "")))
    (add-to-list 'LaTeX-verbatim-macros-with-braces-local "href")
    (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperimage")
    (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperbaseurl")
@@ -16,8 +16,8 @@
     "helvet"
     "setspace"
     "geometry"
+    "hyperref"
     "microtype"
-    "fancyhdr"
-    "draftwatermark"))
+    "fancyhdr"))
  :latex)
 

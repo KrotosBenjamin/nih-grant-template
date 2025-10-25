@@ -1,8 +1,8 @@
 ---
-title: "{{< param mechanism >}} Application"
+title: "NIH Research Grant (Template)"
 subtitle: "Project Title"
 author: "PI Name, Degree(s)"
-date: "`r format(Sys.Date(), '%B %d, %Y')`"
+date: last-modified
 format: pdf
 ---
 
