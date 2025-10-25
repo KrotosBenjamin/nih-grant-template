@@ -2,6 +2,9 @@ project:
   type: manuscript
   output-dir: _output
 
+manuscript:
+  article: mechanisms/r01.qmd   # or r21.qmd / r03.qmd
+  
 format:
   pdf:
     template: templates/nih.tex
