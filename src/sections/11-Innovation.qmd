@@ -1,9 +1,0 @@
-## Innovation
-
-- **Conceptual**: new hypotheses or frameworks.
-
-- **Methodological/Technical**: new tools, datasets, or integrative analytics.
-
-- **Clinical/Translational** (if applicable): how it enables next steps.
-
-- What is truly **new** relative to current practice and why it matters.
