@@ -1,13 +1,12 @@
 project:
   type: book
   output-dir: _out
-  title: "NIH Research Grant (Template)"
-  author: "Kynon J. M. Benjamin"
-  profile: default
 
 book:
+  title: "NIH Research Grant (Template)"
+  author: "Kynon J. M. Benjamin"
   chapters:
-    - src/sections/00-front-matter.qmd
+    - src/sections/index.qmd
     - src/sections/01-project-summary.qmd
     - src/sections/02-project-narrative.qmd
     - src/sections/03-specific-aims.qmd
@@ -26,7 +25,7 @@ format:
   docx: default               # handy for collaborators
 
 bibliography: src/bib/references.bib
-csl: src/bib/csl/ama.csl
+csl: src/bib/csl/nature.csl
 
 params:
   mechanism: "R01"
