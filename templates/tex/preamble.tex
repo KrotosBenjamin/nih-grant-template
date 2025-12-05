@@ -9,7 +9,7 @@
 \usepackage[hidelinks]{hyperref}
 \usepackage{microtype}
 
-% --- Make YAML title exactly 11pt ---
+% Make YAML title exactly 11pt
 % [B] Section heading block:
 \usepackage{titlesec}
 \titleformat{\section}{\bfseries\normalsize\filcenter}{}{0pt}{\MakeUppercase}
@@ -19,6 +19,20 @@
 
 % Kill page numbers
 \AtBeginDocument{\pagenumbering{gobble}\pagestyle{empty}}
+
+% kill hyperlinks only in bibliography
+\usepackage{etoolbox}
+\AtBeginEnvironment{CSLReferences}{%
+  \let\oldhref\href
+  \let\oldurl\url
+  \providecommand{\doi}[1]{#1}% some CSL styles emit \doi{...}
+  \renewcommand{\href}[2]{#2}% keep visible text, drop link
+  \renewcommand{\url}[1]{#1}% print URL as plain text
+}
+\AtEndEnvironment{CSLReferences}{%
+  \let\href\oldhref
+  \let\url\oldurl
+}
 
 % \begin{document}
 % $body$
