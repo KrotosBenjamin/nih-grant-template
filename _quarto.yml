@@ -4,24 +4,26 @@ project:
 
 filters:
   - filters/indent.lua
+  - filters/refs-no-links.lua
 
 format:
   pdf:
     documentclass: article
     include-in-header: templates/tex/preamble.tex
     pdf-engine: lualatex
-    mainfont: "Arial"
+    mainfont: "TeX Gyre Heros"
     fontsize: 11pt
     geometry: "margin=0.5in"
     number-sections: false
     toc: false
     top-level-division: section
+    link-citations: false
 
   docx:
     reference-doc: templates/docx/nih.docx
     number-sections: false
     toc: false
-    link-citations: true
+    link-citations: false
     default-image-extension: png
 
 bibliography: src/bib/references.bib
