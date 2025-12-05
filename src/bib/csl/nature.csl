@@ -42,14 +42,14 @@
     <choose>
       <if variable="volume" type="article dataset software" match="any"/>
       <else-if variable="DOI">
-        <text variable="DOI" prefix="doi:"/>
+        <!-- <text variable="DOI" prefix="doi:"/> -->
       </else-if>
     </choose>
   </macro>
   <macro name="access-data">
     <choose>
       <if type="dataset software" match="any">
-        <text variable="DOI" prefix="https://doi.org/"/>
+        <!-- <text variable="DOI" prefix="https://doi.org/"/> -->
       </if>
     </choose>
   </macro>
@@ -79,10 +79,10 @@
           <text term="at"/>
           <choose>
             <if variable="DOI" match="any">
-              <text variable="DOI" prefix="https://doi.org/"/>
+              <!-- <text variable="DOI" prefix="https://doi.org/"/> -->
             </if>
             <else>
-              <text variable="URL"/>
+              <!-- <text variable="URL"/> -->
             </else>
           </choose>
           <date date-parts="year" form="text" variable="issued" prefix="(" suffix=")"/>
@@ -97,7 +97,7 @@
       </else-if>
       <else-if type="report webpage post post-weblog" match="any">
         <group delimiter=" ">
-          <text variable="URL"/>
+          <!-- <text variable="URL"/> -->
           <date date-parts="year" form="text" variable="issued" prefix="(" suffix=")"/>
         </group>
       </else-if>
@@ -107,10 +107,10 @@
             <if match="none" variable="volume page">
               <choose>
                 <if match="any" variable="DOI">
-                  <text variable="DOI" prefix="https://doi.org/"/>
+                  <!-- <text variable="DOI" prefix="https://doi.org/"/> -->
                 </if>
                 <else>
-                  <text variable="URL"/>
+                  <!-- <text variable="URL"/> -->
                 </else>
               </choose>
             </if>
