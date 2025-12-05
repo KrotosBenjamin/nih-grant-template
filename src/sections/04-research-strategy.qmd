@@ -2,6 +2,28 @@
 format:
   pdf:
     output-file: 04-research-strategy.pdf
+    number-sections: true
+    top-level-division: section
+    include-in-header:
+      text: |
+        \usepackage{titlesec}
+        \setcounter{secnumdepth}{3}
+        \titleformat{\subsection}
+          {\bfseries\large}
+          {\Alph{subsection}.}
+          {0.5em}{\MakeUppercase}
+        \renewcommand{\thesubsection}{\Alph{subsection}}
+        \titleformat{\subsubsection}
+          {\bfseries}                  % bold
+          {\thesubsection\arabic{subsubsection}.}
+          {0.5em}{}
+        \renewcommand{\thesubsubsection}{\thesubsection\arabic{subsubsection}}
+        \makeatletter
+        \@addtoreset{subsubsection}{subsection}
+        \makeatother
+        \titlespacing*{\subsection}{0pt}{0pt}{0pt}
+        \titlespacing*{\subsubsection}{0pt}{2pt}{2pt}
+        \setlength{\parskip}{4pt}
 ---
 # Research Strategy
 ## Significance
@@ -21,5 +43,7 @@ format:
 - Same structure.
 
 ### Aim 3
+- Same structure.
 
 ## Timeline
+Timeline
