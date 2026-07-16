@@ -6,6 +6,11 @@ date: last-modified
 format: pdf
 ---
 
+<!-- Keep the front matter plain and brief; NIH submissions usually don't use a
+     decorative title page. This page is a working dashboard for you, not an
+     attachment — it is not part of any mechanism's section list and is never
+     submitted. -->
+
 NOFO:
 
 IC:
@@ -15,4 +20,59 @@ NIH Deadline:
 Institutional Deadline:
 
 Study Section:
-<!-- Keep the front matter plain and brief; NIH submissions usually don't use a decorative title page. -->
+
+Program Officer:
+
+## Mechanism
+
+Set once, then use it everywhere: `make sections MECH=r01`
+
+Supported: `r01` · `r03` · `r21` · `dp2` · `r35`. Page limits and the section
+list for each live in `_quarto-<mech>.yml` — **verify them against your NOFO**,
+since NIH resets limits with each reissue.
+
+## Section checklist
+
+Limits below are the common defaults. Authoritative values are in the profile
+yml for your mechanism; the build enforces them via `scripts/check_pages.py`.
+
+| Section | Limit | Mechanisms | Status |
+|---|---|---|---|
+| 01 Project Summary / Abstract | 30 lines | all | ☐ |
+| 02 Project Narrative | 3 sentences | all | ☐ |
+| 03 Specific Aims | 1 pg | all except DP2 | ☐ |
+| 04 Research Strategy | 12 pg R01 · 6 pg R03/R21/R35 | all except DP2 | ☐ |
+| 04 Research Strategy (essay) | 10 pg | DP2 only | ☐ |
+| 05 Budget Justification | none | all | ☐ |
+| 06 Facilities & Other Resources | none | all | ☐ |
+| 07 Equipment | none | all | ☐ |
+| 08 Data Management & Sharing | 2 pg | all (required since 2023) | ☐ |
+| 10 Human Subjects | — | if applicable | ☐ |
+| 11 Vertebrate Animals | — | if applicable | ☐ |
+| 12 Authentication of Key Resources | 1 pg | if applicable | ☐ |
+| 13 Mentoring Plan | per NOFO | K/F/T | ☐ |
+| 14 Multiple PD/PI Leadership Plan | none | multi-PI only | ☐ |
+| 90 References Cited | none | all | ☐ |
+
+## Not authored here
+
+Prepared outside this repo and uploaded separately — track them anyway, since
+they sink more submissions than the narrative sections do.
+
+| Item | Owner | Status |
+|---|---|---|
+| Biosketches (5 pg each, all key personnel) | | ☐ |
+| Letters of Support | | ☐ |
+| **Letters of Reference (DP2: 3 required)** — submitted *by the referees*, separately from the application, by the reference deadline | | ☐ |
+| Budget forms (SF424) | | ☐ |
+| Cover Letter | | ☐ |
+| Resource Sharing Plan(s) | | ☐ |
+
+## Pre-submission checks
+
+- [ ] `make sections MECH=<mech>` renders clean
+- [ ] Page limits pass (the build fails if not)
+- [ ] No `TODO` / `TBD` / placeholder text left — including anything flagged
+      `[like this]{color="alert"}` while drafting
+- [ ] Figure captions readable at print size
+- [ ] Citations resolve; bibliography has no stray hyperlinks

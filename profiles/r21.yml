@@ -1,8 +1,0 @@
-profile: r21
-params:
-  mechanism: "R21"
-  page-limits:
-    abstract: 1
-    narrative: 1
-    aims: 1
-    strategy: 6

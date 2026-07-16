@@ -1,0 +1,37 @@
+---
+title: "Mentoring Plan"
+format:
+  pdf:
+    output-file: 13-mentoring-plan.pdf
+---
+
+# Mentoring Plan
+
+<!-- Applies to career development (K), fellowship (F), and training (T)
+     mechanisms; some NOFOs require it elsewhere. CHECK YOUR NOFO — required
+     content and page limit vary by activity code more than for any other
+     attachment here. Delete this section if your mechanism doesn't require it.
+     Do not confuse this with the separate Plan for Enhancing Diverse
+     Perspectives (PEDP) some NOFOs require. -->
+
+## Mentoring Team
+
+Names, roles, and the specific expertise each contributes. Why this team, for
+this candidate, on this project.
+
+## Mentoring Approach
+
+Meeting cadence, and how scientific and career development are handled
+distinctly.
+
+## Training in Rigor and Responsible Conduct of Research
+
+Formal instruction and how rigor is reinforced in practice.
+
+## Career Development
+
+Milestones and timeline toward independence, with the criteria for each.
+
+## Evaluation
+
+How progress is assessed, by whom, and what happens when a milestone slips.

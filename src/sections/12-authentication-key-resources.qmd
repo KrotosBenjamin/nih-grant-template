@@ -1,0 +1,22 @@
+---
+title: "Authentication of Key Biological and/or Chemical Resources"
+format:
+  pdf:
+    output-file: 12-authentication-key-resources.pdf
+---
+
+# Authentication of Key Biological and/or Chemical Resources
+
+<!-- Limit: 1 page. Required when the project uses key resources whose
+     identity or validity could affect the research. Describe the METHODS you
+     will use to authenticate them — not the resources themselves, and not
+     standard reagents. Common key resources: cell lines, specialty chemicals,
+     antibodies, and other biologics. Delete if none apply. -->
+
+**Cell lines.** Source, and authentication method (e.g. STR profiling on
+receipt and at defined passage intervals) plus mycoplasma testing cadence.
+
+**Antibodies.** Vendor, catalog and lot, and validation for the specific
+application (e.g. knockout/knockdown control, orthogonal method).
+
+**Other key resources.** Method and frequency of verification.

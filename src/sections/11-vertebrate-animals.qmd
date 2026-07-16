@@ -1,0 +1,31 @@
+---
+title: "Vertebrate Animals"
+format:
+  pdf:
+    output-file: 11-vertebrate-animals.pdf
+---
+
+# Vertebrate Animals
+
+<!-- Required if the project involves live vertebrate animals. NIH requires
+     exactly these three points (the fourth, euthanasia, was folded into the
+     others in the 2016 revision — check current instructions). Delete this
+     section entirely if no vertebrate animals are involved.
+     Note: this attachment does NOT describe IACUC approval status; that is
+     handled elsewhere in the application. -->
+
+## 1. Description of Procedures
+
+Species, strains, ages, sex, and total number to be used. Procedures, and how
+they relate to the Aims. Justify the numbers.
+
+## 2. Justification
+
+Why animals are required, why this species, and why no non-animal alternative
+suffices. Address the 3Rs (replacement, reduction, refinement).
+
+## 3. Minimization of Pain and Distress
+
+Anesthesia, analgesia, and humane endpoints. If a procedure would cause more
+than momentary pain and no analgesic is used, justify it scientifically.
+Method of euthanasia and its consistency with AVMA guidelines.

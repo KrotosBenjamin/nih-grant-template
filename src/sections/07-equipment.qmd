@@ -1,0 +1,17 @@
+---
+title: "Equipment"
+format:
+  pdf:
+    output-file: 07-equipment.pdf
+---
+
+# Equipment
+
+<!-- No page limit. List major equipment ALREADY AVAILABLE for the project.
+     Equipment you intend to buy belongs in the Budget Justification, not
+     here. Keep it to items relevant to the proposed work. -->
+
+- **Instrument / model.** Location, and what it will be used for in this project.
+- **Instrument / model.** Same.
+
+Shared or core-facility instrumentation, with access arrangements.

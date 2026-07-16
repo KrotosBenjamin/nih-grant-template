@@ -24,26 +24,87 @@ format:
         \titlespacing*{\subsection}{0pt}{0pt}{0pt}
         \titlespacing*{\subsubsection}{0pt}{2pt}{2pt}
         \setlength{\parskip}{4pt}
+
+        % --- Figures -------------------------------------------------------
+        \usepackage{float}
+        \usepackage{wrapfig}
+        \usepackage{caption}
+        \renewcommand{\figurename}{Fig.}
+        \captionsetup{font=footnotesize, labelfont={bf, footnotesize}}
+        \captionsetup[figure]{skip=2pt}
+        % Tighten full-width figure-to-text spacing (does not affect wrapfigure).
+        \setlength{\textfloatsep}{6pt plus 2pt minus 2pt}
+
+        % \rswrap{side}{width}{path}{caption}
+        %   side  : r | l  (or R | L to allow the float to move)
+        %   width : e.g. 3.05in — used for BOTH the wrap column and the image
+        % Text-wrapped figure with no surrounding whitespace. This is the single
+        % biggest page-saver available; prefer it over a full-width float
+        % whenever the figure is narrower than the text block.
+        % NOTE: wrapfigure is LaTeX-only and vanishes from DOCX. Always pair it
+        % with a .content-visible when-format="docx" fallback — see Fig. 1 below.
+        \newcommand{\rswrap}[4]{%
+          \setlength{\columnsep}{6pt}%
+          \setlength{\intextsep}{0pt}%
+          \begin{wrapfigure}{#1}{#2}
+          \centering
+          \includegraphics[width=#2]{#3}
+          \caption{#4}
+          \end{wrapfigure}%
+        }
+  docx:
+    output-file: 04-research-strategy.docx
+    filters:
+      # Word has no \Alph{subsection}; this restores the A./B./C. lettering.
+      - ../../filters/section-letters.lua
 ---
+
 # Research Strategy
+
 ## Significance
+
 - What is the problem? Why now? Who benefits?
 
 ## Innovation
+
 - What is novel about your approach, dataset, or theory?
 
 ## Approach
+
 ### Preliminary Studies / Progress
+
+<!-- FIGURE PATTERN — uncomment and point at a real asset to use.
+
+Raw LaTeX wraps the text in the PDF; the .content-visible block is the DOCX
+fallback, because wrapfigure is LaTeX-only and would silently vanish from Word.
+Reference PDF art for LaTeX and PNG for Word — `default-image-extension: png`
+in _quarto.yml resolves the extension on the DOCX side, so the same basename
+works for both.
+
+```{=latex}
+\rswrap{r}{3.05in}{../../assets/figures/example.pdf}{\textbf{Example.} One-sentence takeaway a reviewer can read without the body text.}
+```
+
+::: {.content-visible when-format="docx"}
+![**Example.** One-sentence takeaway a reviewer can read without the body text.](../../assets/figures/example.png){width=3.05in fig-align="right"}
+:::
+
+-->
+
 - Key results in 2–4 bullets, cite with @doe2020 if in `references.bib`.
 
 ### Aim 1
+
 - Overview → Experimental design → Analysis → Potential problems & alternatives.
 
 ### Aim 2
+
 - Same structure.
 
 ### Aim 3
+
 - Same structure.
 
 ## Timeline
+
 Timeline

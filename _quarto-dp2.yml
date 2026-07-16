@@ -1,0 +1,29 @@
+# Profile: DP2 — NIH Director's New Innovator Award
+#
+# VERIFY page limits against the current RFA-RM before submitting. DP2 is
+# reissued annually and the Research Strategy limit has changed between
+# reissues; the values here are defaults, not a guarantee.
+#
+# DP2 differs structurally from R01/R03/R21:
+#   - NO Specific Aims page. 03-specific-aims is deliberately omitted from
+#     `sections` below; `make aims MECH=dp2` errors rather than building a
+#     PDF that must not be submitted.
+#   - The Research Strategy is a single essay, not the Significance /
+#     Innovation / Approach triad. See src/sections/04-research-strategy.qmd.
+#   - Requires 3 Letters of Reference (tracked in index.qmd), not letters
+#     of support.
+#
+# Activate with:  make sections MECH=dp2      (or QUARTO_PROFILE=dp2 quarto render)
+
+params:
+  mechanism: "DP2 (New Innovator)"
+  page-limits:
+    abstract: 1        # 30 lines of text
+    narrative: 1
+    strategy: 10
+  sections:
+    - 01-project-summary
+    - 02-project-narrative
+    - 04-research-strategy-dp2
+    - 08-data-management-sharing
+    - 90-references

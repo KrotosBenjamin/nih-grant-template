@@ -1,44 +1,59 @@
 # Makefile
 # -------------------------------------------------------------------
-# Per-file rendering uses the "sections" profile (non-book project).
-# Ensure _quarto-sections.yml exists at repo root.
+# Per-file rendering, one PDF/DOCX per grant section.
+#
+# MECH selects the mechanism profile (_quarto-<MECH>.yml at the repo root),
+# which is the single source of truth for page limits and the section list.
+# Nothing here hardcodes a page limit; scripts/profile_params.py extracts them.
+#
+#   make sections MECH=r01        all sections for an R01
+#   make research MECH=dp2        research strategy + its page check
+#   make one FILE=src/sections/03-specific-aims.qmd FORMAT=docx
 # -------------------------------------------------------------------
 
 .PHONY: sections sections-pdf sections-docx aims research one clean
 
 # tools & dirs
-QUARTO           ?= quarto
-OUT              ?= _out
-SECT_OUT         ?= $(OUT)/sections
-PROFILE_SECTIONS ?= sections       # matches _quarto-sections.yml
-FORMAT           ?= pdf            # used by `make one`
-MECH ?= r01                        # r01 | r03 | r21
-STRATEGY_LIMIT := $(if $(filter $(MECH),r01),12,6)
+# NB: keep comments on their own line. A trailing comment after `?=` becomes
+# part of the value, trailing spaces and all.
+QUARTO   ?= quarto
+OUT      ?= _out
+SECT_OUT ?= $(OUT)/sections
+# used by `make one`
+FORMAT   ?= pdf
+# r01 | r03 | r21 | dp2 | r35
+MECH     ?= r01
 
-# section file list (edit to match your repo)
-SECTIONS := \
-  src/sections/01-project-summary.qmd \
-  src/sections/02-project-narrative.qmd \
-  src/sections/03-SpecificAims.qmd \
-  src/sections/04-research-strategy.qmd \
-  src/sections/90-references.qmd
+# Quarto reads the profile from the environment; no --profile flag needed.
+export QUARTO_PROFILE := $(MECH)
+
+$(if $(wildcard _quarto-$(MECH).yml),,\
+  $(error Unknown MECH '$(MECH)': _quarto-$(MECH).yml not found. Try r01, r03, r21, dp2, or r35))
+
+# MECHANISM, LIMIT_*, and SECTIONS are generated from the active profile and
+# included below. Make auto-remakes the include and restarts, so editing a
+# profile yml is picked up on the next build.
+PROFILE_MK := $(OUT)/profile-$(MECH).mk
+-include $(PROFILE_MK)
+
+$(PROFILE_MK): _quarto-$(MECH).yml _quarto.yml scripts/profile_params.py
+	@mkdir -p $(@D)
+	@python3 scripts/profile_params.py $(MECH) > $@ || (rm -f $@; exit 1)
 
 # derived targets
-PDFS  := $(patsubst src/sections/%.qmd,$(OUT)/%.pdf,$(SECTIONS))
-DOCXS := $(patsubst src/sections/%.qmd,$(OUT)/%.docx,$(SECTIONS))
+PDFS  := $(patsubst src/sections/%.qmd,$(SECT_OUT)/%.pdf,$(SECTIONS))
+DOCXS := $(patsubst src/sections/%.qmd,$(SECT_OUT)/%.docx,$(SECTIONS))
 
 # -------------------------------------------------------------------
 # Pattern rules: QMD -> PDF/DOCX (per-file, non-book)
 # -------------------------------------------------------------------
-$(SECT_OUT)/%.pdf: src/sections/%.qmd
+$(SECT_OUT)/%.pdf: src/sections/%.qmd | $(PROFILE_MK)
 	@mkdir -p $(SECT_OUT)
-	$(QUARTO) render --profile $(PROFILE_SECTIONS) "$<" --to pdf \
-	--output-dir $(SECT_OUT) -o "$(notdir $@)"
+	$(QUARTO) render "$<" --to pdf --output-dir $(SECT_OUT) -o "$(notdir $@)"
 
-$(SECT_OUT)/%.docx: src/sections/%.qmd
+$(SECT_OUT)/%.docx: src/sections/%.qmd | $(PROFILE_MK)
 	@mkdir -p $(SECT_OUT)
-	$(QUARTO) render --profile $(PROFILE_SECTIONS) "$<" --to docx \
-	--output-dir $(SECT_OUT) -o "$(notdir $@)"
+	$(QUARTO) render "$<" --to docx --output-dir $(SECT_OUT) -o "$(notdir $@)"
 
 # -------------------------------------------------------------------
 # 1) ALL FILES (one by one)
@@ -49,28 +64,39 @@ sections-docx: $(DOCXS)
 
 # -------------------------------------------------------------------
 # 2) SPECIFIC AIMS
+#    DP2 requires no Aims page, so its profile omits the section and this
+#    target refuses to build one rather than produce an unsubmittable PDF.
 # -------------------------------------------------------------------
-AIMS_FILE := src/sections/03-specific-aims.qmd
-AIMS_LIMIT ?= 1
-aims: $(SECT_OUT)/$(notdir $(AIMS_FILE:.qmd=.pdf)) $(SECT_OUT)/$(notdir $(AIMS_FILE:.qmd=.docx))
-	python3 scripts/check_pages.py "$(OUT)/$(notdir $(AIMS_FILE:.qmd=.pdf))" $(AIMS_LIMIT) || true
+# A mechanism without an `aims` page limit has no Aims page at all, so we
+# build nothing for it and let the recipe fail loudly.
+AIMS_TARGETS := $(if $(LIMIT_aims),$(SECT_OUT)/03-specific-aims.pdf $(SECT_OUT)/03-specific-aims.docx)
+
+aims: $(AIMS_TARGETS)
+	@test -n "$(LIMIT_aims)" || { \
+	  echo "make: *** MECH='$(MECH)' has no Specific Aims section (see _quarto-$(MECH).yml)." >&2; \
+	  echo "make: *** DP2 requires no Aims page — do not submit one." >&2; exit 1; }
+	python3 scripts/check_pages.py "$(SECT_OUT)/03-specific-aims.pdf" $(LIMIT_aims)
 
 # -------------------------------------------------------------------
 # 3) RESEARCH STRATEGY
+#    Derived from the profile's section list rather than hardcoded, because
+#    DP2 uses the essay-style 04-research-strategy-dp2.qmd instead.
 # -------------------------------------------------------------------
-RESEARCH_FILE := src/sections/04-research-strategy.qmd
-research: $(SECT_OUT)/$(notdir $(RESEARCH_FILE:.qmd=.pdf)) $(SECT_OUT)/$(notdir $(RESEARCH_FILE:.qmd=.docx))
-	python3 scripts/check_pages.py "$(OUT)/$(notdir $(RESEARCH_FILE:.qmd=.pdf))" $(STRATEGY_LIMIT) || true
+RESEARCH_SRC := $(filter %research-strategy.qmd %research-strategy-dp2.qmd,$(SECTIONS))
+RESEARCH_PDF := $(patsubst src/sections/%.qmd,$(SECT_OUT)/%.pdf,$(RESEARCH_SRC))
+
+research: $(RESEARCH_PDF) $(patsubst %.pdf,%.docx,$(RESEARCH_PDF))
+	python3 scripts/check_pages.py "$(RESEARCH_PDF)" $(LIMIT_strategy)
 
 # -------------------------------------------------------------------
 # 4) USER-SPECIFIED FILE
-#    Usage: make one FILE=sections/03-SpecificAims.qmd [FORMAT=pdf|docx]
+#    Usage: make one FILE=src/sections/03-specific-aims.qmd [FORMAT=pdf|docx]
 # -------------------------------------------------------------------
 one:
-	@test -n "$(FILE)" || (echo "Usage: make one FILE=sections/<file>.qmd [FORMAT=pdf|docx]"; exit 1)
-	@mkdir -p $(OUT)
-	$(QUARTO) render --profile $(PROFILE_SECTIONS) "$(FILE)" --to $(FORMAT) \
-	  --output-dir $(OUT) -o "$$(basename "$${FILE%.qmd}").$(FORMAT)"
+	@test -n "$(FILE)" || (echo "Usage: make one FILE=src/sections/<file>.qmd [FORMAT=pdf|docx]"; exit 1)
+	@mkdir -p $(SECT_OUT)
+	$(QUARTO) render "$(FILE)" --to $(FORMAT) \
+	  --output-dir $(SECT_OUT) -o "$$(basename "$${FILE%.qmd}").$(FORMAT)"
 
 # -------------------------------------------------------------------
 # Clean files

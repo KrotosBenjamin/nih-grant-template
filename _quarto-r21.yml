@@ -1,0 +1,26 @@
+# Profile: R21 — Exploratory/Developmental Research Grant
+#
+# VERIFY page limits against your specific FOA before submitting. NIH limits
+# vary by activity code and are re-set with each reissue; the values here are
+# the common defaults, not a guarantee.
+#
+# Activate with:  make sections MECH=r21      (or QUARTO_PROFILE=r21 quarto render)
+
+params:
+  mechanism: "R21"
+  page-limits:
+    abstract: 1
+    narrative: 1
+    aims: 1
+    strategy: 6
+  # R21 takes a modular budget, so the budget justification is Personnel-only.
+  sections:
+    - 01-project-summary
+    - 02-project-narrative
+    - 03-specific-aims
+    - 04-research-strategy
+    - 05-budget-justification
+    - 06-facilities
+    - 07-equipment
+    - 08-data-management-sharing
+    - 90-references

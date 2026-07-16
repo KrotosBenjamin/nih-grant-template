@@ -1,0 +1,40 @@
+---
+title: "Multiple PD/PI Leadership Plan"
+format:
+  pdf:
+    output-file: 14-multiple-pd-pi-leadership.pdf
+---
+
+# Multiple PD/PI Leadership Plan
+
+<!-- REQUIRED whenever more than one PD/PI is designated — and only then.
+     Delete this section for a single-PI application.
+     Note: R35 MIRA and DP2 are single-PI mechanisms; this section does not
+     apply to them. -->
+
+## Rationale for Multiple PD/PIs
+
+Why the science requires more than one PD/PI. The answer should be about
+complementary expertise, not administrative convenience.
+
+## Governance and Organizational Structure
+
+Roles, responsibilities, and decision-making authority of each PD/PI, mapped
+to specific Aims.
+
+## Communication
+
+Meeting cadence and how day-to-day coordination happens across sites.
+
+## Conflict Resolution
+
+The process for resolving scientific and administrative disagreements, and who
+arbitrates if the PD/PIs cannot agree.
+
+## Budget and Resource Allocation
+
+How funds and personnel are distributed across PD/PIs and institutions.
+
+## Intellectual Property
+
+How IP and authorship are handled, if not covered by institutional policy.

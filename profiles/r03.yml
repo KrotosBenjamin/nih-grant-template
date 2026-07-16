@@ -1,8 +1,0 @@
-profile: r03
-params:
-  mechanism: "R03"
-  page-limits:
-    abstract: 1
-    narrative: 1
-    aims: 1
-    strategy: 6
