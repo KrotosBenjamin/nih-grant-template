@@ -1,0 +1,82 @@
+---
+# DP2 (New Innovator) Research Strategy — used instead of
+# 04-research-strategy.qmd, which is the R01-style Significance / Innovation /
+# Approach triad. _quarto-dp2.yml selects this file.
+#
+# DP2 is judged on the INVESTIGATOR and the IDEA, not on a detailed
+# experimental plan. Preliminary data are explicitly NOT required and a
+# conventional Aims-and-methods structure reads as a weak DP2. Write it as an
+# essay: what could be true, why it would matter enormously, why you are the
+# one to find out. VERIFY the page limit against the current RFA-RM.
+format:
+  pdf:
+    output-file: 04-research-strategy-dp2.pdf
+    number-sections: false
+    top-level-division: section
+    include-in-header:
+      text: |
+        \usepackage{titlesec}
+        \setlength{\parskip}{4pt}
+
+        % --- Figures -------------------------------------------------------
+        \usepackage{float}
+        \usepackage{wrapfig}
+        \usepackage{caption}
+        \renewcommand{\figurename}{Fig.}
+        \captionsetup{font=footnotesize, labelfont={bf, footnotesize}}
+        \captionsetup[figure]{skip=2pt}
+        \setlength{\textfloatsep}{6pt plus 2pt minus 2pt}
+
+        % \rswrap{side}{width}{path}{caption} — see 04-research-strategy.qmd.
+        % wrapfigure is LaTeX-only; pair it with a docx fallback.
+        \newcommand{\rswrap}[4]{%
+          \setlength{\columnsep}{6pt}%
+          \setlength{\intextsep}{0pt}%
+          \begin{wrapfigure}{#1}{#2}
+          \centering
+          \includegraphics[width=#2]{#3}
+          \caption{#4}
+          \end{wrapfigure}%
+        }
+  docx:
+    output-file: 04-research-strategy-dp2.docx
+---
+
+# Research Strategy
+
+## The Problem
+
+The entrenched assumption or unsolved problem this program overturns. State
+what the field currently believes and why that belief is the bottleneck.
+
+## The Idea
+
+The central hypothesis or approach, in a form a reviewer can restate after one
+reading. This is the section the award turns on — it should be genuinely risky.
+If it cannot fail, it is not a DP2.
+
+## Why It Matters
+
+What becomes possible if this is right. DP2 rewards a large payoff, so name the
+downstream consequence for the field, not an incremental improvement.
+
+## Approach
+
+A high-level plan — direction and logic, not protocols. Show that the idea is
+testable and that you have thought about what the first decisive experiment is.
+Resist the urge to write an R01 Approach here; detail spent on methods is space
+taken from the idea.
+
+## Feasibility and Risk
+
+The riskiest assumption, how you would know early if it is wrong, and where you
+would go next. Reviewers want calibrated risk, not the absence of it.
+
+## Why This Investigator
+
+Track record, unique vantage point, and the environment that makes this
+possible now. DP2 funds a person; make the case that this idea and this
+investigator are not separable.
+
+<!-- Preliminary data are NOT required for DP2 and are not expected. Include a
+     figure only if it makes the idea legible faster than prose would. -->

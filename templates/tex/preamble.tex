@@ -4,18 +4,44 @@
 \setstretch{1.0} % single-spaced body
 \usepackage{geometry}
 
-% Helvetica ≈ Arial; satisfies many FOA requirements—verify for your FOA.
-% margins set via _quarto.yml geometry
+% Font and margins are set in _quarto.yml (TeX Gyre Heros 11pt, 0.5in margins).
+% TeX Gyre Heros approximates Arial; verify font requirements for your FOA.
+% To switch to pdflatex instead of lualatex, set `pdf-engine: pdflatex` in
+% _quarto.yml, drop `mainfont`, and add here:
+%   \usepackage[scaled]{helvet}
+%   \renewcommand{\familydefault}{\sfdefault}
 \usepackage[hidelinks]{hyperref}
 \usepackage{microtype}
 
-% Make YAML title exactly 11pt
+% Colors: do NOT \definecolor here. The palette lives in filters/color.lua
+% (the PALETTE table) and is injected into this preamble automatically, so the
+% two cannot drift apart. Authors write [text]{color="accent"} or
+% [text]{color="#B00020"} in markdown.
+
 % [B] Section heading block:
 \usepackage{titlesec}
 \titleformat{\section}{\bfseries\normalsize\filcenter}{}{0pt}{\MakeUppercase}
 \titlespacing*{\section}{0pt}{0pt}{0.2ex}
 \titlespacing*{\subsection}{0pt}{0.5ex}{0.2ex}
 \titleformat{\subsection}{\itshape\normalsize}{}{0pt}{}
+
+% H3/H4. Without these they fall back to LaTeX defaults, which are oversized
+% and waste vertical space you need for a page-limited Research Strategy.
+% The run-in \paragraph is a standard NIH space-saver.
+\titleformat{\subsubsection}{\bfseries\normalsize}{}{0pt}{}
+\titlespacing*{\subsubsection}{0pt}{0.5ex}{0.2ex}
+\titleformat{\paragraph}[runin]{\bfseries\normalsize}{}{0pt}{}
+\titlespacing*{\paragraph}{0pt}{0.5ex}{1em}
+
+% Headings are black by default — the conservative choice for NIH. To color
+% them for reviewer navigation (as the NSF template does), uncomment below.
+% `accent` and `muted` come from filters/color.lua's palette; edit it there to
+% restyle every heading in every section at once.
+%
+% \titleformat{\section}{\bfseries\normalsize\filcenter\color{accent}}{}{0pt}{\MakeUppercase}
+% \titleformat{\subsection}[block]{\bfseries\normalsize\color{accent}}{}{0pt}{}%
+%   [{\color{muted}\vspace{-0.5ex}\titlerule[0.8pt]}]
+% \titleformat{\subsubsection}{\itshape\normalsize\color{muted}}{}{0pt}{}
 
 % Kill page numbers
 \AtBeginDocument{\pagenumbering{gobble}\pagestyle{empty}}
@@ -33,7 +59,3 @@
   \let\href\oldhref
   \let\url\oldurl
 }
-
-% \begin{document}
-% $body$
-% \end{document}

@@ -1,5 +1,20 @@
 ---
-title: "References"
+# nocite: '@*' prints every entry in references.bib, not just the cited ones.
+# NIH's References Cited has no page limit, but it must list what you cite.
+# If you'd rather list only cited works, delete this line — then the sections
+# that cite them must be rendered as part of the same document.
+nocite: '@*'
+format:
+  pdf:
+    output-file: 90-references.pdf
 ---
 
-<!-- Citations use your .bib + CSL -->
+# References Cited
+
+<!-- The bibliography is injected here. Body sections set
+     `suppress-bibliography: true` so citations resolve there without each
+     section printing its own reference list. filters/refs-no-links.lua strips
+     hyperlinks from the entries. -->
+
+::: {#refs}
+:::

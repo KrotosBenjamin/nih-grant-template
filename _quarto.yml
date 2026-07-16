@@ -4,7 +4,13 @@ project:
 
 filters:
   - filters/indent.lua
+  - filters/color.lua
   - filters/refs-no-links.lua
+
+# Match \renewcommand{\figurename}{Fig.} in templates/tex/preamble.tex, so
+# @fig-x cross-references read "Fig. 1" like the caption does.
+crossref:
+  fig-prefix: "Fig."
 
 format:
   pdf:

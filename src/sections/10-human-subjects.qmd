@@ -1,0 +1,52 @@
+---
+title: "Human Subjects"
+format:
+  pdf:
+    output-file: 10-human-subjects.pdf
+---
+
+# Protection of Human Subjects
+
+<!-- Required if the project involves human subjects. Much of this is entered
+     structurally in the PHS Human Subjects and Clinical Trials Information
+     form rather than as a narrative attachment — check your NOFO and the
+     ASSIST form before writing prose here. Delete this section entirely if
+     the project has no human subjects; do not submit an empty attachment. -->
+
+## Risks to Human Subjects
+
+### Human Subjects Involvement, Characteristics, and Design
+
+Population, sample size and its justification, inclusion/exclusion criteria,
+and recruitment.
+
+### Sources of Materials
+
+Data and biospecimens to be obtained, and whether they are identifiable.
+
+### Potential Risks
+
+Physical, psychological, social, legal, and privacy risks, and their
+likelihood and seriousness.
+
+## Adequacy of Protection Against Risks
+
+### Informed Consent and Assent
+
+Process, or justification for a waiver.
+
+### Protections Against Risk
+
+Safeguards, confidentiality, and data security.
+
+## Potential Benefits to Subjects and Others
+
+Benefits, and why risks are reasonable relative to them.
+
+## Importance of the Knowledge to be Gained
+
+Why the knowledge is worth the risk.
+
+## Inclusion of Women, Minorities, and Individuals Across the Lifespan
+
+Planned distribution and its scientific justification.

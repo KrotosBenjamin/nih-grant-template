@@ -1,0 +1,42 @@
+---
+title: "Facilities & Other Resources"
+format:
+  pdf:
+    output-file: 06-facilities.pdf
+---
+
+# Facilities & Other Resources
+
+<!-- No page limit. Reviewers read this to answer one question: can this
+     environment actually deliver this project? Describe capability, not
+     square footage. Tie each resource to an Aim wherever you can. -->
+
+## Laboratory
+
+Space, location, and what it is equipped to do for *this* project.
+
+## Clinical
+
+Patient population, recruitment infrastructure, and expected accrual, if
+human subjects are involved.
+
+## Computer
+
+Compute and storage available, including institutional HPC allocation.
+State what the analyses in the Approach require and confirm it is available.
+
+## Office
+
+Space for the PI and project personnel.
+
+## Other Resources
+
+Cores, shared instrumentation, biobanks, registries, and data-use agreements
+already in place.
+
+## Scientific Environment
+
+Institutional commitment, mentoring and collaborator access, and how the
+environment contributes to the probability of success. For ESI mechanisms
+(R35 MIRA, DP2), be explicit about protected research time and startup
+support — reviewers weigh this heavily for early-stage investigators.

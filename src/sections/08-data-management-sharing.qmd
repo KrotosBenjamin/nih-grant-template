@@ -1,0 +1,50 @@
+---
+title: "Data Management and Sharing Plan"
+format:
+  pdf:
+    output-file: 08-data-management-sharing.pdf
+---
+
+# Data Management and Sharing Plan
+
+<!-- REQUIRED for all NIH applications generating scientific data (DMS Policy,
+     effective 2023-01-25). Recommended limit: 2 pages. Use NIH's six required
+     elements as the headings below — reviewers and program staff check for
+     them by name, so do not rename or reorder them.
+     Costs for data management belong in the Budget Justification. -->
+
+## 1. Data Type
+
+Types, amount, and format of scientific data to be generated and which will be
+preserved and shared. Distinguish raw from processed data, and state what will
+*not* be shared and why.
+
+## 2. Related Tools, Software and/or Code
+
+Whether specialized tools are needed to access or analyze the data, and how
+they will be made available (e.g. an open-source repository under a stated
+license).
+
+## 3. Standards
+
+Data standards, formats, and metadata vocabularies to be applied, so the data
+are interpretable by others.
+
+## 4. Data Preservation, Access, and Associated Timelines
+
+- **Repository.** Name it, and prefer an NIH-designated or discipline-specific
+  one where a relevant repository exists.
+- **Identifiers.** Persistent identifiers (DOI/accession) enabling findability.
+- **Timeline.** When data become available and how long they persist. No later
+  than publication or end of the award period, whichever comes first.
+
+## 5. Access, Distribution, or Reuse Considerations
+
+Applicable factors limiting reuse: informed consent, privacy and protection of
+identifiable information, and any other restrictions. Controlled-access
+justification, if applicable.
+
+## 6. Oversight of Data Management and Sharing
+
+Who is responsible (by role and name), and how compliance is monitored across
+the award.

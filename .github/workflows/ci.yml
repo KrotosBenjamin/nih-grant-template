@@ -5,14 +5,25 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # Every supported mechanism builds on every push, so a change that
+        # breaks one profile can't hide behind another.
+        mech: [r01, r03, r21, dp2, r35]
     steps:
       - uses: actions/checkout@v4
       - uses: quarto-dev/quarto-actions/setup@v2
-      - name: Install TinyTex
-        run: quarto install tinytex
-      - name: Render R01
-        run: QUARTO_PROFILE=r01 quarto render
+      - name: Install TinyTeX
+        run: quarto install tinytex --no-prompt
+      - name: Install pypdf
+        run: pip install pypdf
+      # Renders all sections for the mechanism and checks page limits; both the
+      # section list and the limits come from _quarto-${{ matrix.mech }}.yml.
+      - name: Render ${{ matrix.mech }}
+        run: bash scripts/render.sh ${{ matrix.mech }}
       - uses: actions/upload-artifact@v4
         with:
-          name: PDFs
-          path: _out/*.pdf
+          name: PDFs-${{ matrix.mech }}
+          path: _out/sections/*.pdf
+          if-no-files-found: error

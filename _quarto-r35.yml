@@ -1,0 +1,29 @@
+# Profile: R35 — ESI MIRA (NIGMS Maximizing Investigators' Research Award)
+#
+# VERIFY page limits against the current NIGMS PAR before submitting. The ESI
+# MIRA PAR is reissued periodically and limits have changed between reissues;
+# the values here are defaults, not a guarantee.
+#
+# MIRA funds the investigator's research program rather than a single project,
+# so the Research Strategy describes a program of work. Keep it program-level.
+#
+# Activate with:  make sections MECH=r35      (or QUARTO_PROFILE=r35 quarto render)
+
+params:
+  mechanism: "ESI MIRA (R35)"
+  page-limits:
+    abstract: 1
+    narrative: 1
+    aims: 1
+    strategy: 6
+  # MIRA is single-PI, so 14-multiple-pd-pi-leadership never applies.
+  sections:
+    - 01-project-summary
+    - 02-project-narrative
+    - 03-specific-aims
+    - 04-research-strategy
+    - 05-budget-justification
+    - 06-facilities
+    - 07-equipment
+    - 08-data-management-sharing
+    - 90-references

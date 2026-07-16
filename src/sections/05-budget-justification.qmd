@@ -1,0 +1,44 @@
+---
+title: "Budget Justification"
+format:
+  pdf:
+    output-file: 05-budget-justification.pdf
+---
+
+# Budget Justification
+
+<!-- No NIH page limit, but keep it tight and make every line traceable to a
+     line in the budget form. Modular budgets (R03/R21, and R01s under
+     $250K direct/year) need only Personnel; detailed budgets need all of it. -->
+
+## Personnel
+
+**PI Name, Degree — Role, N calendar months.** One or two sentences on what
+this person does on this project specifically, tied to the Aims. Not a resume.
+
+**TBN Postdoctoral Researcher — N calendar months.** What they will do, and
+why the project needs that effort level.
+
+## Equipment
+
+Item, cost, and why existing institutional equipment (see Facilities) is
+insufficient. Omit this section for a modular budget.
+
+## Travel
+
+Purpose and destination. Tie conference travel to dissemination of this
+project's results.
+
+## Other Direct Costs
+
+- **Materials and supplies.** Per-sample or per-unit basis where possible.
+- **Publication costs.** Number of expected open-access papers × typical APC.
+- **Consultant services.** Name, rate, and scope.
+
+## Consortium/Subaward Costs
+
+Institution, PI, scope of work, and total direct + F&A. Attach the subaward's
+own budget justification.
+
+<!-- COLOR TIP: flag unresolved numbers while drafting so they can't ship —
+     [TBD: confirm APC with library]{color="alert"} -->

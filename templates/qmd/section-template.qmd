@@ -11,3 +11,43 @@ Content.
 - Bullet 2
 
 **Takeaway.** One sentence.
+
+<!-- ===================================================================
+     PATTERNS — delete whatever you don't use.
+
+     COLORED TEXT (filters/color.lua)
+     Named palette colors (accent, alert, muted, success) or any hex value.
+     Works inline, on whole blocks, and in headings; renders in PDF, DOCX,
+     and HTML. Edit the PALETTE table in filters/color.lua to change the
+     named colors everywhere at once.
+
+       [our advantage]{color="accent"}
+       [critical caveat]{color="#B00020"}
+       ## [Approach]{color="accent"}
+
+       ::: {color="#0B4F71"}
+       A whole block — paragraphs and lists included.
+       :::
+
+     Caveat: in DOCX a colored span becomes a raw run, so nested bold or
+     italic inside it is flattened to plain text (the filter warns).
+
+     INDENTED BLOCK (filters/indent.lua)
+
+       ::: {.indent width=2em}
+       An indented paragraph.
+       :::
+
+     WRAPPED FIGURE (\rswrap, defined in 04-research-strategy.qmd)
+     Text wraps around the figure with no surrounding whitespace — the best
+     page-saver available. wrapfigure is LaTeX-only, so always pair it with
+     the DOCX fallback. PDF art for LaTeX, PNG for Word.
+
+     ```{=latex}
+     \rswrap{r}{3.05in}{../../assets/figures/example.pdf}{\textbf{Fig. 1.} Takeaway.}
+     ```
+
+     ::: {.content-visible when-format="docx"}
+     ![**Fig. 1.** Takeaway.](../../assets/figures/example.png){width=3.05in fig-align="right"}
+     :::
+     =================================================================== -->
