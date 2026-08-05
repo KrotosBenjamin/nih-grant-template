@@ -1,0 +1,73 @@
+---
+# ESI MIRA Research Strategy. PAR-27-032 treats this as a program-level essay,
+# not the standard R01 Significance / Innovation / Approach structure. It also
+# prohibits the designation used for a conventional objectives attachment.
+# Verify the applicable NOFO before adapting this scaffold.
+suppress-bibliography: true
+format:
+  pdf:
+    output-file: 04-research-strategy-mira.pdf
+    number-sections: false
+    top-level-division: section
+    include-in-header:
+      text: |
+        \usepackage{titlesec}
+        \setlength{\parskip}{4pt}
+
+        % --- Figures -------------------------------------------------------
+        \usepackage{float}
+        \usepackage{wrapfig}
+        \usepackage{caption}
+        \renewcommand{\figurename}{Fig.}
+        \captionsetup{font=footnotesize, labelfont={bf, footnotesize}}
+        \captionsetup[figure]{skip=2pt}
+        \setlength{\textfloatsep}{6pt plus 2pt minus 2pt}
+  docx:
+    output-file: 04-research-strategy-mira.docx
+---
+
+# Research Strategy
+
+## Program Vision and Biological Premise
+
+State the durable scientific problem that defines the laboratory's research
+program, the central premise connecting the work, and the general principles
+the program seeks to discover.
+
+## Background and Key Challenges
+
+Explain the most important unresolved biological questions and why a
+program-level body of work is needed. Organize around knowledge gaps rather
+than a sequence of experiments.
+
+## Recent Progress and Preparation
+
+Describe the investigator's trajectory, key contributions, and preliminary or
+published work that establishes readiness and independence.
+
+## Future Research Program
+
+### Research Direction 1
+
+Define a fundamental question, the biological insight sought, representative
+strategies, tests that could change the direction, and expected contribution.
+
+### Research Direction 2
+
+Present a complementary direction that can succeed independently while
+contributing to the larger program.
+
+### Research Direction 3
+
+Present an additional direction only if it sharpens the program's intellectual
+coherence. Avoid a rigid, sequential project plan.
+
+## Shared Scientific Discipline
+
+Explain standards for rigor, reproducibility, model criticism, orthogonal
+validation, data sharing, and decisions to redirect or discontinue work.
+
+## Program Integration, Evolution, and Impact
+
+Show how the directions form a coherent research program, how it can evolve as
+evidence changes, and what broad biological understanding it will create.

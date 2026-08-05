@@ -7,9 +7,10 @@ format:
 
 # Facilities & Other Resources
 
-<!-- No page limit. Reviewers read this to answer one question: can this
-     environment actually deliver this project? Describe capability, not
-     square footage. Tie each resource to an Aim wherever you can. -->
+<!-- Most mechanisms have no page limit; DP2 has a one-page maximum. Reviewers
+     read this to answer one question: can this environment deliver the work?
+     Describe capability, not square footage, and connect resources to the
+     proposed activities. -->
 
 ## Laboratory
 

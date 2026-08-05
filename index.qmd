@@ -40,19 +40,20 @@ yml for your mechanism; the build enforces them via `scripts/check_pages.py`.
 |---|---|---|---|
 | 01 Project Summary / Abstract | 30 lines | all | ☐ |
 | 02 Project Narrative | 3 sentences | all | ☐ |
-| 03 Specific Aims | 1 pg | all except DP2 | ☐ |
-| 04 Research Strategy | 12 pg R01 · 6 pg R03/R21/R35 | all except DP2 | ☐ |
-| 04 Research Strategy (essay) | 10 pg | DP2 only | ☐ |
-| 05 Budget Justification | none | all | ☐ |
-| 06 Facilities & Other Resources | none | all | ☐ |
+| 03 Specific Aims | 1 pg | R01/R03/R21; forbidden for DP2/R35 | ☐ |
+| 04 Standard Research Strategy | 12 pg R01 · 6 pg R03/R21 | R01/R03/R21 | ☐ |
+| 04 DP2 Research Strategy + references | 10 pg | DP2 only | ☐ |
+| 04 MIRA program-level Research Strategy | 6 pg | R35 only | ☐ |
+| 05 Budget Justification | none | use MIRA-specific scaffold for R35 | ☐ |
+| 06 Facilities & Other Resources | 1 pg DP2 · otherwise check NOFO | all | ☐ |
 | 07 Equipment | none | all | ☐ |
-| 08 Data Management & Sharing | 2 pg | all (required since 2023) | ☐ |
+| 08 Data Management & Sharing | 2 pg | all; select current or legacy format | ☐ |
 | 10 Human Subjects | — | if applicable | ☐ |
 | 11 Vertebrate Animals | — | if applicable | ☐ |
 | 12 Authentication of Key Resources | 1 pg | if applicable | ☐ |
 | 13 Mentoring Plan | per NOFO | K/F/T | ☐ |
 | 14 Multiple PD/PI Leadership Plan | none | multi-PI only | ☐ |
-| 90 References Cited | none | all | ☐ |
+| 90 References Cited | none | all except DP2 (integrated into strategy) | ☐ |
 
 ## Not authored here
 
@@ -71,6 +72,7 @@ they sink more submissions than the narrative sections do.
 ## Pre-submission checks
 
 - [ ] `make sections MECH=<mech>` renders clean
+- [ ] `make preflight MECH=<mech>` passes mechanism-specific structural checks
 - [ ] Page limits pass (the build fails if not)
 - [ ] No `TODO` / `TBD` / placeholder text left — including anything flagged
       `[like this]{color="alert"}` while drafting

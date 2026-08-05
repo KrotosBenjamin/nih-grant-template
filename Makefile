@@ -6,12 +6,13 @@
 # which is the single source of truth for page limits and the section list.
 # Nothing here hardcodes a page limit; scripts/profile_params.py extracts them.
 #
-#   make sections MECH=r01        all sections for an R01
+#   make sections MECH=r03        all sections for an R03
 #   make research MECH=dp2        research strategy + its page check
+#   make preflight MECH=r35       validate mechanism-specific structure
 #   make one FILE=src/sections/03-specific-aims.qmd FORMAT=docx
 # -------------------------------------------------------------------
 
-.PHONY: sections sections-pdf sections-docx aims research one clean
+.PHONY: sections sections-pdf sections-docx aims research one preflight clean
 
 # tools & dirs
 # NB: keep comments on their own line. A trailing comment after `?=` becomes
@@ -40,6 +41,9 @@ $(PROFILE_MK): _quarto-$(MECH).yml _quarto.yml scripts/profile_params.py
 	@mkdir -p $(@D)
 	@python3 scripts/profile_params.py $(MECH) > $@ || (rm -f $@; exit 1)
 
+preflight: $(PROFILE_MK)
+	@python3 scripts/check_profile_compliance.py $(MECH)
+
 # derived targets
 PDFS  := $(patsubst src/sections/%.qmd,$(SECT_OUT)/%.pdf,$(SECTIONS))
 DOCXS := $(patsubst src/sections/%.qmd,$(SECT_OUT)/%.docx,$(SECTIONS))
@@ -47,11 +51,11 @@ DOCXS := $(patsubst src/sections/%.qmd,$(SECT_OUT)/%.docx,$(SECTIONS))
 # -------------------------------------------------------------------
 # Pattern rules: QMD -> PDF/DOCX (per-file, non-book)
 # -------------------------------------------------------------------
-$(SECT_OUT)/%.pdf: src/sections/%.qmd | $(PROFILE_MK)
+$(SECT_OUT)/%.pdf: src/sections/%.qmd | $(PROFILE_MK) preflight
 	@mkdir -p $(SECT_OUT)
 	$(QUARTO) render "$<" --to pdf --output-dir $(SECT_OUT) -o "$(notdir $@)"
 
-$(SECT_OUT)/%.docx: src/sections/%.qmd | $(PROFILE_MK)
+$(SECT_OUT)/%.docx: src/sections/%.qmd | $(PROFILE_MK) preflight
 	@mkdir -p $(SECT_OUT)
 	$(QUARTO) render "$<" --to docx --output-dir $(SECT_OUT) -o "$(notdir $@)"
 
@@ -64,8 +68,8 @@ sections-docx: $(DOCXS)
 
 # -------------------------------------------------------------------
 # 2) SPECIFIC AIMS
-#    DP2 requires no Aims page, so its profile omits the section and this
-#    target refuses to build one rather than produce an unsubmittable PDF.
+#    Profiles without a Specific Aims attachment omit its page limit, so this
+#    target refuses to produce an attachment that the mechanism forbids.
 # -------------------------------------------------------------------
 # A mechanism without an `aims` page limit has no Aims page at all, so we
 # build nothing for it and let the recipe fail loudly.
@@ -74,15 +78,15 @@ AIMS_TARGETS := $(if $(LIMIT_aims),$(SECT_OUT)/03-specific-aims.pdf $(SECT_OUT)/
 aims: $(AIMS_TARGETS)
 	@test -n "$(LIMIT_aims)" || { \
 	  echo "make: *** MECH='$(MECH)' has no Specific Aims section (see _quarto-$(MECH).yml)." >&2; \
-	  echo "make: *** DP2 requires no Aims page — do not submit one." >&2; exit 1; }
+	  echo "make: *** This mechanism forbids that attachment; do not submit one." >&2; exit 1; }
 	python3 scripts/check_pages.py "$(SECT_OUT)/03-specific-aims.pdf" $(LIMIT_aims)
 
 # -------------------------------------------------------------------
 # 3) RESEARCH STRATEGY
 #    Derived from the profile's section list rather than hardcoded, because
-#    DP2 uses the essay-style 04-research-strategy-dp2.qmd instead.
+#    DP2 and MIRA use mechanism-specific essay/program strategy files.
 # -------------------------------------------------------------------
-RESEARCH_SRC := $(filter %research-strategy.qmd %research-strategy-dp2.qmd,$(SECTIONS))
+RESEARCH_SRC := $(filter %research-strategy.qmd %research-strategy-dp2.qmd %research-strategy-mira.qmd,$(SECTIONS))
 RESEARCH_PDF := $(patsubst src/sections/%.qmd,$(SECT_OUT)/%.pdf,$(RESEARCH_SRC))
 
 research: $(RESEARCH_PDF) $(patsubst %.pdf,%.docx,$(RESEARCH_PDF))
@@ -92,8 +96,10 @@ research: $(RESEARCH_PDF) $(patsubst %.pdf,%.docx,$(RESEARCH_PDF))
 # 4) USER-SPECIFIED FILE
 #    Usage: make one FILE=src/sections/03-specific-aims.qmd [FORMAT=pdf|docx]
 # -------------------------------------------------------------------
-one:
+one: preflight
 	@test -n "$(FILE)" || (echo "Usage: make one FILE=src/sections/<file>.qmd [FORMAT=pdf|docx]"; exit 1)
+	@test -n "$(LIMIT_aims)" || test "$(notdir $(FILE))" != "03-specific-aims.qmd" || { \
+	  echo "make: *** MECH='$(MECH)' forbids a Specific Aims attachment." >&2; exit 1; }
 	@mkdir -p $(SECT_OUT)
 	$(QUARTO) render "$(FILE)" --to $(FORMAT) \
 	  --output-dir $(SECT_OUT) -o "$$(basename "$${FILE%.qmd}").$(FORMAT)"

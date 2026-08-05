@@ -5,7 +5,8 @@ format:
 ---
 # Project Summary / Abstract
 
-**Overall Impact.** _Provide a succinct, accurate description of the proposed work, including broad, long-term objectives and specific aims._
+**Overall Impact.** _Provide a succinct, accurate description of the proposed
+work, including its broad, long-term objectives and major research directions._
 
 **Key Elements.**
 - Significance and innovation.

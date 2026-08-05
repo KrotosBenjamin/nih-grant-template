@@ -13,6 +13,7 @@ params:
     narrative: 1
     aims: 1
     strategy: 6
+    dms: 2
   # R21 takes a modular budget, so the budget justification is Personnel-only.
   sections:
     - 01-project-summary

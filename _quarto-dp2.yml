@@ -9,9 +9,14 @@
 #     `sections` below; `make aims MECH=dp2` errors rather than building a
 #     PDF that must not be submitted.
 #   - The Research Strategy is a single essay, not the Significance /
-#     Innovation / Approach triad. See src/sections/04-research-strategy.qmd.
+#     Innovation / Approach triad. See
+#     src/sections/04-research-strategy-dp2.qmd.
 #   - Requires 3 Letters of Reference (tracked in index.qmd), not letters
 #     of support.
+#   - References Cited is NOT a separate attachment. It counts against the
+#     10-page essay limit, so the bibliography is printed at the end of
+#     04-research-strategy-dp2.qmd and 90-references is omitted below.
+#   - Facilities & Other Resources is a brief, one-page attachment.
 #
 # Activate with:  make sections MECH=dp2      (or QUARTO_PROFILE=dp2 quarto render)
 
@@ -20,10 +25,12 @@ params:
   page-limits:
     abstract: 1        # 30 lines of text
     narrative: 1
-    strategy: 10
+    strategy: 10       # includes References Cited
+    facilities: 1
+    dms: 2
   sections:
     - 01-project-summary
     - 02-project-narrative
     - 04-research-strategy-dp2
+    - 06-facilities
     - 08-data-management-sharing
-    - 90-references

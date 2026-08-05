@@ -1,0 +1,32 @@
+---
+title: "Budget Justification"
+format:
+  pdf:
+    output-file: 05-budget-justification-mira.pdf
+---
+
+# Budget Justification
+
+<!-- PAR-27-032 uses a non-itemized R&R Budget. Include this attachment only
+     when equipment, data-management costs, or F&A-base exclusions require
+     justification. Do not add personnel, travel, supply, or subaward detail.
+     Verify these instructions against the applicable MIRA NOFO. -->
+
+## Equipment
+
+_If equipment is requested in Year 1, describe each item, its cost, why it is
+needed for the research program, and why available institutional equipment is
+insufficient. Confirm whether equipment can be requested in later years under
+the applicable NOFO._
+
+## Data Management and Sharing Justification
+
+**Requested direct costs: $0.**
+
+_Replace the amount and briefly describe allowable DMS costs if funds are
+requested. Remove this section if no justification is required._
+
+## F&A Base Exclusions
+
+_Explain any exclusions applied to the facilities and administrative cost
+base. Remove this section if none apply._

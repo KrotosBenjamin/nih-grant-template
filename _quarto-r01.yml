@@ -13,6 +13,7 @@ params:
     narrative: 1
     aims: 1
     strategy: 12
+    dms: 2
   # Sections built by `make sections MECH=r01`. Add or remove to match your
   # NOFO — e.g. drop 10/11 if you have no human subjects or animals, add
   # 14-multiple-pd-pi-leadership only if you designate more than one PD/PI.

@@ -1,0 +1,42 @@
+---
+title: "Data Management and Sharing Plan (Legacy Six-Element Format)"
+format:
+  pdf:
+    output-file: 08-data-management-sharing-legacy.pdf
+---
+
+# Data Management and Sharing Plan
+
+<!-- Retained for applications whose receipt date or NOFO still requires the
+     2023 six-element format. Rename this file or update the active mechanism
+     profile if it applies. Confirm the required format before submission. -->
+
+## 1. Data Type
+
+Describe the types, amount, and format of scientific data to be generated;
+which data will be preserved and shared; and the relevant metadata.
+
+## 2. Related Tools, Software and/or Code
+
+State whether specialized tools are needed to access or analyze the data and
+how those tools will be made available.
+
+## 3. Standards
+
+Name the data standards, formats, and metadata vocabularies that will make the
+shared data interpretable and reusable.
+
+## 4. Data Preservation, Access, and Associated Timelines
+
+Identify repositories, persistent identifiers, the sharing timeline, and the
+period for which the data will remain available.
+
+## 5. Access, Distribution, or Reuse Considerations
+
+Describe privacy, consent, legal, ethical, or technical limits on reuse and
+justify controlled access where applicable.
+
+## 6. Oversight of Data Management and Sharing
+
+Name the responsible role and describe how compliance will be monitored during
+the award.

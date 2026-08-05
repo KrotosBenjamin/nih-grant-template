@@ -14,7 +14,8 @@ format:
 ## Personnel
 
 **PI Name, Degree — Role, N calendar months.** One or two sentences on what
-this person does on this project specifically, tied to the Aims. Not a resume.
+this person does on this project specifically, tied to the proposed work. Not a
+resume.
 
 **TBN Postdoctoral Researcher — N calendar months.** What they will do, and
 why the project needs that effort level.

@@ -80,3 +80,11 @@ investigator are not separable.
 
 <!-- Preliminary data are NOT required for DP2 and are not expected. Include a
      figure only if it makes the idea legible faster than prose would. -->
+
+## References Cited
+
+<!-- References count against the DP2 essay limit and are not uploaded as a
+     separate attachment. Only cited works appear here; do not add nocite '@*'. -->
+
+::: {#refs}
+:::

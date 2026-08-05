@@ -19,8 +19,10 @@ follows from it.
 
 ```bash
 make sections MECH=r01        # every section for an R01
-make sections MECH=dp2        # DP2: essay-style strategy, no Specific Aims
-make research MECH=r35        # one section + its page check
+make sections MECH=r03        # R03 structure used by d-start-r03
+make sections MECH=dp2        # DP2 essay + integrated references
+make sections MECH=r35        # MIRA program strategy, no Specific Aims
+make preflight MECH=r35       # check mechanism-specific attachment rules
 make one FILE=src/sections/03-specific-aims.qmd FORMAT=docx
 make clean
 ```
@@ -47,14 +49,27 @@ nothing else.
 |---|---|---|
 | R01 | 1 pg | 12 pg |
 | R03 / R21 | 1 pg | 6 pg |
-| R35 (ESI MIRA) | 1 pg | 6 pg |
-| DP2 | **none** | 10 pg (essay-style) |
+| R35 (ESI MIRA) | **none** | 6 pg (program-level) |
+| DP2 | **none** | 10 pg (essay-style, including references) |
 
-**DP2 has no Specific Aims page.** Its profile omits the section, and
-`make aims MECH=dp2` fails on purpose rather than producing a PDF you must not
-submit. DP2 also uses `04-research-strategy-dp2.qmd` — an essay, not the
-Significance/Innovation/Approach triad — since DP2 is judged on the
-investigator and the idea, and preliminary data are not expected.
+**DP2 has no Specific Aims page or separate References Cited attachment.** Its
+profile omits both, and `make aims MECH=dp2` fails on purpose. DP2 uses
+`04-research-strategy-dp2.qmd`; cited references print at the end and count
+against its ten-page limit. The current scaffold also includes the one-page
+Facilities & Other Resources attachment demonstrated by
+`../dp2-regulatory-twins`.
+
+**ESI MIRA also has no Specific Aims attachment.** The R35 profile follows the
+PAR-27-032 structure demonstrated by `../mira-context-regulation`: it selects
+`04-research-strategy-mira.qmd`, a program-level strategy without the standard
+Significance / Innovation / Approach headings. Preflight rejects a prohibited
+attachment, designation, or strategy heading before rendering. Its profile also
+selects `05-budget-justification-mira.qmd`, which reflects the non-itemized MIRA
+budget rather than the standard detailed/modular justification scaffold.
+
+**R03 retains the standard structure** demonstrated by `../d-start-r03`: a
+one-page Specific Aims attachment and six-page Research Strategy, plus the
+standard administrative attachments selected in `_quarto-r03.yml`.
 
 Over-limit sections **fail the build**. That is deliberate: an over-length
 section is rejected at submission, so it should be rejected here first.
@@ -71,8 +86,22 @@ section is rejected at submission, so it should be rejected here first.
 - Add a section by creating the file and listing it in the relevant
   `_quarto-<mech>.yml` `sections:`.
 - Figures go in `assets/figures/`; cite as `@fig-myplot`.
-- Citations live in `src/bib/references.bib`; cite like `@doe2020`. The
-  bibliography prints only in `90-references.qmd`, with hyperlinks stripped.
+- Citations live in `src/bib/references.bib`; cite like `@doe2020`. For most
+  mechanisms the bibliography prints in `90-references.qmd`, with hyperlinks
+  stripped. DP2 prints cited works inside its Research Strategy instead.
+- `08-data-management-sharing.qmd` uses the 2026 Pilot DMS Plan scaffold used
+  by the MIRA proposal. The prior six-element format remains available as
+  `08-data-management-sharing-legacy.qmd`; select the format required for the
+  application's receipt date and NOFO.
+
+### Reusable boilerplate
+
+The R03 project demonstrates an optional `common/` subtree for institutional
+Facilities, Equipment, rigor, authentication, and sharing text. Keep such
+content in a private repository because it quickly becomes institution- and
+lab-specific. This template does not vendor the R03 project's prose; if you use
+the pattern, include shared QMD snippets from your own pinned subtree and keep
+proposal-specific claims in `src/sections/`.
 
 ### Colored text
 
@@ -118,10 +147,11 @@ instead — faster, smaller TinyTeX footprint — set `pdf-engine: pdflatex` in
 ## Troubleshooting
 
 1. `quarto check` to confirm the install.
-2. `make sections MECH=r01` for a clean baseline.
-3. Work one section at a time: `make one FILE=src/sections/<file>.qmd`.
-4. If a PDF fails to build:
+2. `make preflight MECH=<mech>` to catch a structurally invalid attachment set.
+3. `make sections MECH=r01` for a clean baseline.
+4. Work one section at a time: `make one FILE=src/sections/<file>.qmd`.
+5. If a PDF fails to build:
    - Comment out recent edits and re-render.
    - Check the LaTeX log in `_out/` for missing packages or bad syntax.
    - Render `FORMAT=docx` to isolate content problems from LaTeX ones.
-5. `make sections MECH=bogus` errors immediately with the valid mechanisms.
+6. `make sections MECH=bogus` errors immediately with the valid mechanisms.

@@ -20,6 +20,8 @@ fi
 vars="$(python3 scripts/profile_params.py "$MECH")"
 sections="$(sed -n 's/^SECTIONS := //p' <<<"$vars")"
 
+python3 scripts/check_profile_compliance.py "$MECH"
+
 mkdir -p _out/sections
 
 for f in $sections; do
@@ -39,7 +41,11 @@ check() { # <LIMIT_ var name> <pdf-basename>...
   value="$(sed -n "s/^${limit} := //p" <<<"$vars")"
   [[ -z "$value" ]] && return 0   # mechanism has no such section
   for f in "$@"; do
-    if [[ -f "_out/sections/${f}.pdf" ]]; then
+    # Ignore stale PDFs left by another profile in the shared output directory.
+    # Only a basename present in this profile's active section list can satisfy
+    # the role check.
+    if [[ " $sections " == *" src/sections/${f}.qmd "* ]] &&
+       [[ -f "_out/sections/${f}.pdf" ]]; then
       python3 scripts/check_pages.py "_out/sections/${f}.pdf" "$value"
       return 0
     fi
@@ -52,7 +58,9 @@ check() { # <LIMIT_ var name> <pdf-basename>...
 check LIMIT_abstract  01-project-summary
 check LIMIT_narrative 02-project-narrative
 check LIMIT_aims      03-specific-aims
-# DP2 uses the essay-style strategy file; every other mechanism uses the triad.
-check LIMIT_strategy  04-research-strategy 04-research-strategy-dp2
+# Standard grants, DP2, and MIRA each use their own strategy basename.
+check LIMIT_strategy  04-research-strategy 04-research-strategy-dp2 04-research-strategy-mira
+check LIMIT_facilities 06-facilities
+check LIMIT_dms       08-data-management-sharing
 
 echo "All ${MECH} sections rendered."
