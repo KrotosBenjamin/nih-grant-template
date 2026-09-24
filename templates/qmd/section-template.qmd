@@ -1,6 +1,8 @@
 ---
-title: "SECTION TITLE"
+# PDF heading and quote highlighting is inherited from the project.
 ---
+
+# SECTION TITLE
 
 Intro sentence.
 
@@ -10,10 +12,15 @@ Content.
 - Bullet 1
 - Bullet 2
 
-**Takeaway.** One sentence.
+> **Takeaway.** One sentence.
 
 <!-- ===================================================================
      PATTERNS — delete whatever you don't use.
+
+     PDF HIGHLIGHTING
+     H1 titles, H2 bands, H3 accent bars, and short > statement boxes are
+     styled by default. Change heading/headingbg/quotebg/quoterule in the
+     filters/color.lua palette. Quote boxes cannot split across pages.
 
      COLORED TEXT (filters/color.lua)
      Named palette colors (accent, alert, muted, success) or any hex value.

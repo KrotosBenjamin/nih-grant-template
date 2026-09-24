@@ -103,6 +103,23 @@ lab-specific. This template does not vendor the R03 project's prose; if you use
 the pattern, include shared QMD snippets from your own pinned subtree and keep
 proposal-specific claims in `src/sections/`.
 
+### Default PDF highlighting
+
+Every mechanism inherits blue attachment titles, pale blue `##` heading
+bands, and blue accent bars on `###` headings. The numbered Research Strategy
+uses blue ruled headings while retaining its A./B./C. and A1. numbering.
+Short Markdown block quotes become centered, pale green statement boxes:
+
+```markdown
+> **Key question.** What will this work make possible?
+```
+
+Edit `heading`, `headingbg`, `quotebg`, and `quoterule` in the `PALETTE`
+table in `filters/color.lua` to change the colors. Layout is defined in
+`templates/tex/preamble.tex`. Statement boxes cannot split across pages, so
+keep them short. These automatic decorations apply to PDF; DOCX retains its
+reference-document styles.
+
 ### Colored text
 
 Any hex value, or a named palette color:
@@ -122,10 +139,9 @@ Renders in PDF, DOCX, and HTML. Named colors (`accent`, `alert`, `muted`,
 edit them there and every section follows. An unrecognized color warns and
 renders the text uncolored rather than breaking the build.
 
-Two caveats: in DOCX a colored span becomes a raw run, so nested bold/italic
-inside it flattens to plain text (the filter warns when this happens). And
-headings are black by default — `templates/tex/preamble.tex` has a
-commented-out recipe for colored headings if you want them.
+In DOCX a colored span becomes a raw run, so nested bold/italic
+inside it flattens to plain text (the filter warns when this happens).
+Automatic PDF heading and quote highlighting does not carry over to DOCX.
 
 A useful habit: flag unresolved text with `[TBD: confirm this]{color="alert"}`
 while drafting so it is impossible to miss before submission.

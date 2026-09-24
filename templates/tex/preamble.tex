@@ -18,30 +18,46 @@
 % two cannot drift apart. Authors write [text]{color="accent"} or
 % [text]{color="#B00020"} in markdown.
 
-% [B] Section heading block:
+% Default PDF highlighting, shared by every mechanism. Colors are supplied
+% by filters/color.lua and expanded only when headings/quotes are typeset.
 \usepackage{titlesec}
-\titleformat{\section}{\bfseries\normalsize\filcenter}{}{0pt}{\MakeUppercase}
-\titlespacing*{\section}{0pt}{0pt}{0.2ex}
-\titlespacing*{\subsection}{0pt}{0.5ex}{0.2ex}
-\titleformat{\subsection}{\itshape\normalsize}{}{0pt}{}
+\titleformat{\section}
+  {\bfseries\large\filcenter\color{heading}}{}{0pt}{\MakeUppercase}
+\titlespacing*{\section}{0pt}{0pt}{0.6ex}
 
-% H3/H4. Without these they fall back to LaTeX defaults, which are oversized
-% and waste vertical space you need for a page-limited Research Strategy.
-% The run-in \paragraph is a standard NIH space-saver.
-\titleformat{\subsubsection}{\bfseries\normalsize}{}{0pt}{}
-\titlespacing*{\subsubsection}{0pt}{0.5ex}{0.2ex}
+% Keep the entire band within the text measure; a parbox lets long titles wrap.
+\newcommand{\grantbandhead}[1]{%
+  \begingroup
+  \setlength{\fboxsep}{3pt}%
+  \colorbox{headingbg}{%
+    \parbox{\dimexpr\linewidth-2\fboxsep\relax}{\raggedright #1}}%
+  \endgroup}
+\titleformat{\subsection}[block]
+  {\bfseries\normalsize\color{heading}}{}{0pt}{\grantbandhead}
+\titlespacing*{\subsection}{0pt}{1.1ex}{0.5ex}
+\titleformat{\subsubsection}[block]
+  {\bfseries\normalsize\color{heading}}{}{0pt}
+  {\rule[-0.15ex]{2.5pt}{1.0em}\hspace{0.5em}}
+\titlespacing*{\subsubsection}{0pt}{1.0ex}{0.3ex}
 \titleformat{\paragraph}[runin]{\bfseries\normalsize}{}{0pt}{}
 \titlespacing*{\paragraph}{0pt}{0.5ex}{1em}
 
-% Headings are black by default — the conservative choice for NIH. To color
-% them for reviewer navigation (as the NSF template does), uncomment below.
-% `accent` and `muted` come from filters/color.lua's palette; edit it there to
-% restyle every heading in every section at once.
-%
-% \titleformat{\section}{\bfseries\normalsize\filcenter\color{accent}}{}{0pt}{\MakeUppercase}
-% \titleformat{\subsection}[block]{\bfseries\normalsize\color{accent}}{}{0pt}{}%
-%   [{\color{muted}\vspace{-0.5ex}\titlerule[0.8pt]}]
-% \titleformat{\subsubsection}{\itshape\normalsize\color{muted}}{}{0pt}{}
+% Markdown > blocks become compact shaded statements. These boxes do not
+% split across pages: reserve block quotes for short questions or takeaways.
+\usepackage{varwidth}
+\newsavebox{\grantquotebox}
+\renewenvironment{quote}
+  {\par\addvspace{4pt}%
+    \begingroup
+    \setlength{\fboxsep}{3pt}%
+    \setlength{\fboxrule}{0.5pt}%
+    \begin{lrbox}{\grantquotebox}%
+      \begin{varwidth}{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}\centering}
+  {   \end{varwidth}%
+    \end{lrbox}%
+    \noindent\makebox[\linewidth][c]{%
+      \fcolorbox{quoterule}{quotebg}{\usebox{\grantquotebox}}}%
+    \par\endgroup\addvspace{4pt}}
 
 % Kill page numbers
 \AtBeginDocument{\pagenumbering{gobble}\pagestyle{empty}}

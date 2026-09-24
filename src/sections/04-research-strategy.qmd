@@ -9,19 +9,20 @@ format:
         \usepackage{titlesec}
         \setcounter{secnumdepth}{3}
         \titleformat{\subsection}
-          {\bfseries\large}
+          {\bfseries\large\color{heading}}
           {\Alph{subsection}.}
           {0.5em}{\MakeUppercase}
+          [{\color{heading}\vspace{-0.5ex}\titlerule[1pt]}]
         \renewcommand{\thesubsection}{\Alph{subsection}}
         \titleformat{\subsubsection}
-          {\bfseries}                  % bold
+          {\bfseries\normalsize\color{heading}}
           {\thesubsection\arabic{subsubsection}.}
           {0.5em}{}
         \renewcommand{\thesubsubsection}{\thesubsection\arabic{subsubsection}}
         \makeatletter
         \@addtoreset{subsubsection}{subsection}
         \makeatother
-        \titlespacing*{\subsection}{0pt}{0pt}{0pt}
+        \titlespacing*{\subsection}{0pt}{1.1ex}{0.5ex}
         \titlespacing*{\subsubsection}{0pt}{2pt}{2pt}
         \setlength{\parskip}{4pt}
 

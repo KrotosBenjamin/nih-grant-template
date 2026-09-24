@@ -19,6 +19,10 @@ local PALETTE = {
   alert   = "B00020", -- red
   muted   = "5A6B76", -- grey
   success = "1B7A3D", -- green
+  heading = "0B4F71", -- deep blue heading text
+  headingbg = "E3EDF3", -- pale blue section bands
+  quotebg = "E1EFE6", -- pale green key statements
+  quoterule = "AECFBC", -- green statement borders
 }
 
 -- #RGB or #RRGGBB -> "RRGGBB" (uppercase, no '#'); nil if malformed.
@@ -163,8 +167,8 @@ end
 -- Emit \definecolor for the whole palette so PALETTE stays the single source.
 --
 -- Ordering note: `include-in-header` (preamble.tex) lands BEFORE these
--- definitions. That is fine for the commented-out colored-heading recipe in
--- preamble.tex, because \titleformat only stores {\color{accent}...} and
+-- definitions. That is fine for the default heading and quote styles in
+-- preamble.tex, because their definitions only store color names and
 -- expands it at \section time, long after these lines. It would break only for
 -- preamble code that expands a color name immediately (e.g. \colorlet). If you
 -- ever need that, move this block statically into preamble.tex and delete this
